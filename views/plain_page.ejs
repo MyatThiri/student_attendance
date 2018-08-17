@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partial/head %>
+
+    <title>SAM System </title>
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-bell-o"></i> <span>SAM System</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <% include partial/menu_profile %>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <% include partial/sidebar %>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <% include partial/menu_footer %>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <% include partial/top_nav %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <% include partial/page_content %>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <% include  partial/footer %>
+        <!-- /footer content -->
+        <% include partial/script %>
+      </div>
+    </div>
+  </body>
+</html>
