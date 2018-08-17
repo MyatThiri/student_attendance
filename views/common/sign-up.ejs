@@ -72,7 +72,7 @@
                 <input type="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <a class="btn btn-default submit" href="../admin/plain">Submit</a>
               </div>
 
               <div class="clearfix"></div>
@@ -92,4 +92,34 @@
       </div>
     </div>
   </body>
+  <script src="/js/jquery.min.js" charset="utf-8"></script>
+  <script src="/js/jquery.validate.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $.validator.addMethod("pwcheck", function(value){
+      return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+                && /[a-z]/.test(value) // has a lowercase letter
+                && /[A-Z]/.test(value) // has a uppercase letter
+                && /\d/.test(value) // has a digit
+    });
+    $('#signup').validate({
+      rules: {
+        'repassword' : {
+          equalTo: '[name="password"]'
+        },
+        'password':{
+          pwcheck:true
+        }
+      },
+      messages: {
+        password:{
+          pwcheck:"Type in uppercase letters, lowercase letters, and numbers.",
+        }
+      },
+    });
+    <% if (messages.warn) { %>
+      alert('<%=messages.warn%>');
+    <%
+        }
+    %>
+  </script>
 </html>
