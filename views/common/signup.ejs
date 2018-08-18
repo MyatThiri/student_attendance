@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Student Attendance Management System </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,62 +24,24 @@
 
   <body class="login">
     <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
 
       <div class="login_wrapper">
-        <div class="animate form login_form">
+
+
+        <div id="register">
           <section class="login_content">
-            <form>
-              <h1>Login Form</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="admin/plain">Log in</a>
-                <a class="reset_pass" href="#">Lost your password?</a>
-              </div>
-
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-
-              </div>
-            </form>
-          </section>
-        </div>
-
-        <div id="register" class="animate form registration_form">
-          <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="../admin/plain">Submit</a>
-              </div>
-
+            <form id="signup" action="/signup" method="post">
+              <h1>Signup Form</h1>
+              <input type="text" class="form-control" name="name" value="" placeholder="Name" required><p>
+              <input type="email" id="email" class="form-control" name="email" value="" placeholder="Email" required><p>
+              <input type="password" class="form-control" name="password" value="" placeholder="Password" required><p>
+              <input type="password" class="form-control" name="repassword" value="" placeholder="Confirm Password" required><p>
+              <input type="button" class="btn btn-default submit" id="save" name="button" value="SignUp">
               <div class="clearfix"></div>
 
               <div class="separator">
                 <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
+                  <a href="/signin" class="to_register"> Signin </a>
                 </p>
 
                 <div class="clearfix"></div>
@@ -115,6 +77,21 @@
           pwcheck:"Type in uppercase letters, lowercase letters, and numbers.",
         }
       },
+    });
+    $('#save').on('click', function(){
+      $.post(
+        '/dupemail',
+        { email: $('#email').val()}
+      ).done(function(res){
+        if(res.status){
+          alert(res.msg);
+          $('#email').select();
+        }else{
+          $('#signup').submit();
+        }
+      }).fail(function(err){
+        alert(err.status + ' ' + err.responseText);
+      });
     });
     <% if (messages.warn) { %>
       alert('<%=messages.warn%>');
