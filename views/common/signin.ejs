@@ -11,8 +11,9 @@
       <section class="login_content">
         <form id="signin" action="/signin" method="post">
           <h1>Signin Form</h1>
-          <input type="email" class="form-control" name="email" value="" placeholder="Email" required><p>
+          <input type="email" class="form-control"id="email" name="email" value="" placeholder="Email" required><p>
             <input type="password" class="form-control" name="password" value="" placeholder="Password" required><p>
+            <label><input type="checkbox" name="rememberme" id="rememberme" value="R">Remember me</label><p>
           <div>
             <input class="btn btn-default submit" type="submit" name="btn" value="Signin">
             <!-- <a class="btn btn-default submit" href="admin/plain">Signin</a> -->
@@ -36,11 +37,19 @@
       </section>
     </div>
   </body>
+  <script src="/js/jquery.min.js" chrset="utf-8"></script>
   <script type="text/javascript">
+  $(function(){
     <% if (messages.warn) { %>
       alert ('<%=messages.warn%>');
   <%
     }
   %>
+  <% if (email) {%>
+    $('#rememberme').prop("checked", true);
+    $('#email').val('<%=email%>');
+    $('#password').focus();
+  <% }  %>
+});
   </script>
 </html>

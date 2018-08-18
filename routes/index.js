@@ -43,20 +43,29 @@ router.post('/dupemail', function(req, res, next){
 
 /* GET signin page. */
 router.get('/signin', function(req, res, next){
-  res.render('common/signin', {title: 'Signin'});
+  var email = (req.cookies.email)?req.cookies.email:'';
+  res.render('common/signin', {title: 'Signin', email:email});
 });
 
 /* POST signin page. */
  router.post('/signin', function(req, res, next) {
-   User.findByEmail(req.body.email, function(err,users){
+   User.findByEmail(req.body.email, function(err,admin){
      if(err) next (err);
-     if(users.length == 0 || !User.compare(req.body.password,users[0].password)){
+     if(admin.length == 0 || !User.compare(req.body.password,admin[0].password)){
        req.flash('warn', 'Email not exists or password not matched!!');
        res.redirect('/signin');
      }else{
-       req.session.users = { uid:users[0].uid,uname:users[0].name, email:users[0].email }
+       req.session.users = { uid:admin[0].uid,uname:admin[0].name, email:admin[0].email }
+       if(req.body.rememberme) res.cookie('email',admin[0].email, {maxAge:864008*7});
+       else res.cookie('email', '', {maxAge: 0});
        res.redirect('/');
      }
      });
+   });
+
+   /* GET  signout*/
+   router.get('/signout', function(req,res,next){
+     req.session.destroy();
+     res.redirect('/');
    });
 module.exports = router;
