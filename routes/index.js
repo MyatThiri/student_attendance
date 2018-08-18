@@ -4,7 +4,7 @@ var User = require('../models/User');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('plain_page', { title: 'Express' });
 });
 
 /* GET signin page. */
@@ -46,4 +46,17 @@ router.get('/signin', function(req, res, next){
   res.render('common/signin', {title: 'Signin'});
 });
 
+/* POST signin page. */
+ router.post('/signin', function(req, res, next) {
+   User.findByEmail(req.body.email, function(err,users){
+     if(err) next (err);
+     if(users.length == 0 || !User.compare(req.body.password,users[0].password)){
+       req.flash('warn', 'Email not exists or password not matched!!');
+       res.redirect('/signin');
+     }else{
+       req.session.users = { uid:users[0].uid,uname:users[0].name, email:users[0].email }
+       res.redirect('/');
+     }
+     });
+   });
 module.exports = router;

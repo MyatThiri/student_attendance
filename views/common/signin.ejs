@@ -11,14 +11,11 @@
       <section class="login_content">
         <form id="signin" action="/signin" method="post">
           <h1>Signin Form</h1>
+          <input type="email" class="form-control" name="email" value="" placeholder="Email" required><p>
+            <input type="password" class="form-control" name="password" value="" placeholder="Password" required><p>
           <div>
-            <input type="text" class="form-control" placeholder="Username" required="" />
-          </div>
-          <div>
-            <input type="password" class="form-control" placeholder="Password" required="" />
-          </div>
-          <div>
-            <a class="btn btn-default submit" href="admin/plain">Signin</a>
+            <input class="btn btn-default submit" type="submit" name="btn" value="Signin">
+            <!-- <a class="btn btn-default submit" href="admin/plain">Signin</a> -->
             <a class="reset_pass" href="#">Lost your password?</a>
           </div>
 
