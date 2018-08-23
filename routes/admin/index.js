@@ -16,13 +16,20 @@ router.post('/addteacher', function(req, res, next){
   var params = [req.body.id,req.body.name, req.body.email,req.body.gender,req.body.dept, req.body.number, req.body.password];
   Teacher.add(params, function(err,teacher){
     if(err) next (err);
-    res.end ('Success');
-    // res.render('admin/teacher-list', {title: 'Teacher List', teacher: teacher, search:{keyword: req.body.keyword, role: req.body.role}});
+    // TODO add messages
+    res.redirect('/admin/teacher-list');
   });
-  });
+});
 
 router.get('/teacherlist', function(req,res,next){
-    res.render('admin/teacher-list');
+  var params = [];
+  console.log('list');
+    Teacher.find(params, function(err,teacher){
+      console.log(teacher);
+      if (err) next (err);
+      res.render('admin/teacher-list',{teacher:teacher});
+    })
+
 });
 
 

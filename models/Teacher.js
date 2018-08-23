@@ -13,23 +13,9 @@ var Teacher = {
   },
 
   find: function(params, callback){
-    var t = []
-    var sql = "SELECT tid,name,email,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM teacher";
-    // if(params[0] != '' || params[1] != '')
-    // {
-    //   sql += " WHERE";
-    //   if(params[0] != ''){
-    //     sql += " (name LIKE concat('%',?,'%') OR email LIKE concat ('%',?,'%') )";
-    //     t.push(params[0]);
-    //     t.push(params[0]);
-    //     if(params[1] != '') sql += " AND";
-    //   }
-    //   if(params[1] != ''){
-    //     sql += " role = ?";
-    //     t.push(params[1]);
-    //   }
-    // }
-    // return db.query(sql, t, callback);
+    console.log('dbcall');
+    var sql = "SELECT tid,name,email,gender,department,ph_number,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM teacher";
+    return db.query(sql, params, callback);
   },
   compare:function(cleartext,encrypted){
     return bcrypt.compareSync(cleartext,encrypted);

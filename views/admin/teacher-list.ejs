@@ -66,95 +66,27 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Name</th>
                           <th>ID</th>
+                          <th>Name</th>
                           <th>Email</th>
                           <th>Gender</th>
-                          <th>Phone Number</th>
                           <th>Department</th>
+                          <th>Phone Number</th>
+                          <th>Updated</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Daw Hla Hla</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>F</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Mya Mya</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>F</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>U Win</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>M</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Hla</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>F</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>U Myo</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>M</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Kay Thi</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>F</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>U Kyaw</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>M</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>U Thiha</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>M</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Thiri</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>F</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Aye</td>
-                          <td>T's ID</td>
-                          <td>teacher@gmail.com</td>
-                          <td>F</td>
-                          <td>09999</td>
-                          <td>IT</td>
-                        </tr>
+                        <% for (var i =0; i< teacher.length; i++){ %>
+                          <tr>
+                            <td><%=teacher[i].tid%></td>
+                            <td><%=teacher[i].name%></td>
+                            <td><%=teacher[i].email%></td>
+                            <td><%=teacher[i].gender%></td>
+                            <td><%=teacher[i].department%></td>
+                            <td><%=teacher[i].ph_number%></td>
+                            <td><%=teacher[i].updated%></td>
+                          </tr>
+                      <%  } %>
                       </tbody>
                     </table>
                   </div>
