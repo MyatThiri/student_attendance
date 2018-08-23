@@ -45,6 +45,7 @@
   <%
     }
   %>
+  console.log('<%= email %>');
   <% if (email) {%>
     $('#rememberme').prop("checked", true);
     $('#email').val('<%=email%>');

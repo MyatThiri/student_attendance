@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
+var Teacher = require('../models/Teacher');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('plain_page', { title: 'Express' });
+  res.render('plain_page', { title: 'Home Page' });
 });
 
 /* GET signin page. */
@@ -23,7 +24,7 @@ router.post('/signup', function(req, res, next){
     } else {
       User.add(params, function(err2, result){
         if (err2) throw err2;
-        res.render('common/signin');
+        res.redirect('/signin');
       });
     }
   });

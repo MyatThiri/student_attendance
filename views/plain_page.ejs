@@ -39,7 +39,16 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <% include partial/page_content %>
+        <!-- <% include partial/page_content %> -->
+        <div class="right_col" role="main">
+          <div class="">
+            <h1><%=title%></h1>
+            <p>Welcome to <%=title%></p>
+            <% if(user) {%>
+              Welcome <%=user.name%>
+            <% } %>
+          </div>
+        </div>
         <!-- /page content -->
 
         <!-- footer content -->
