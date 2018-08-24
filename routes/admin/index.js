@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Teacher = require('../../models/Teacher');
+var Student = require('../../models/Student');
 
 var users = require('./users');
 // router.get('/plain', function(req,res,next){
@@ -35,6 +36,14 @@ router.get('/teacherlist', function(req,res,next){
 
 router.get('/studentadd', function(req,res,next){
     res.render('admin/student-add')
+});
+
+router.post ('/studentadd', function(req,res,next){
+  var params = [req.body.id,req.body.name,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.password];
+  Student.add(params, function(err,student){
+    if(err) next (err);
+    res.end ('Success');
+  });
 });
 
 router.get('/studentlist', function(req,res,next){
