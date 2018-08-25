@@ -14,8 +14,9 @@ var Student = {
   },
 
   find: function(params, callback){
-    var p = [];
-    var sql = "SELECT sid,name,email,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM student";
+    // var p = [];
+    var sql = "SELECT sid,name,email,gender, ph_number, department, class,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM student";
+    return db.query(sql, params, callback);
   },
   compare:function(cleartext,encrypted){
     return bcrypt.compareSync(cleartext,encrypted);

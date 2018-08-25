@@ -42,12 +42,19 @@ router.post ('/studentadd', function(req,res,next){
   var params = [req.body.id,req.body.name,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.password];
   Student.add(params, function(err,student){
     if(err) next (err);
-    res.end ('Success');
+  //TODO add messages
+  res.redirect('/admin/studentlist');
   });
 });
 
 router.get('/studentlist', function(req,res,next){
-    res.render('admin/student-list')
+  var params = [];
+  console.log('list');
+  Student.find(params, function(err,student){
+    console.log(student);
+    if(err) next (err);
+    res.render('admin/student-list', {student:student});
+  })
 });
 
 
