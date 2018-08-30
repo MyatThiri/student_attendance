@@ -33,6 +33,9 @@ router.get('/teacherlist', function(req,res,next){
 
 });
 
+router.get('/viewteacher', function(req,res,next){
+  res.render('admin/teacher-view',{title:'Teacher View'})
+});
 
 router.get('/studentadd', function(req,res,next){
     res.render('admin/student-add')
@@ -47,6 +50,7 @@ router.post ('/studentadd', function(req,res,next){
   });
 });
 
+
 router.get('/studentlist', function(req,res,next){
   var params = [];
   console.log('list');
@@ -57,6 +61,13 @@ router.get('/studentlist', function(req,res,next){
   })
 });
 
+router.get('/view/:id', function(req,res,next){
+  Student.findById(req.params.id,function(err,student){
+    if(err) throw err;
+    if(student.length == 0) next (new Error('Student data not found!'));
+      res.render('admin/student-view',{title:'Student View', student: student[0]});
+  });
+});
 
 router.get('/drawtimetable', function(req,res,next){
     res.render('admin/draw-timetable1')

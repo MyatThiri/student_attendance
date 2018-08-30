@@ -13,6 +13,11 @@ var Student = {
     return db.query(sql, [email], callback);
   },
 
+  findById: function(sid, callback) {
+    var sql = "SELECT sid,name,email,gender,ph_number,department,class,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM student WHERE sid = ?";
+    return db.query (sql, [sid], callback);
+  },
+
   find: function(params, callback){
     // var p = [];
     var sql = "SELECT sid,name,email,gender, ph_number, department, class,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM student";

@@ -3,7 +3,8 @@
   <head>
     <% include partial/head %>
 
-    <title>SAM System </title>
+    <title>Gentelella Alela! | </title>
+
 
   </head>
 
@@ -13,7 +14,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-bell-o"></i> <span>SAM System</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -39,23 +40,30 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-
         <div class="right_col" role="main">
           <div class="">
-            <h1><%=title%></h1>
-            <p>Welcome to <%=title%></p>
-            <% if(user) {%>
-              Welcome <%=user.name%>
-            <% } %>
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Home Page</h3>
+              </div>
+
+              
+            </div>
+
+            <div class="clearfix"></div>
+
+
           </div>
         </div>
         <!-- /page content -->
 
         <!-- footer content -->
-        <% include  partial/footer %>
+        <% include partial/footer %>
         <!-- /footer content -->
-        <% include partial/script %>
       </div>
     </div>
+
+    <!-- jQuery -->
+    <% include partial/script %>
   </body>
 </html>
