@@ -66,6 +66,7 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
+                          <th>No</th>
                           <th>ID</th>
                           <th>Name</th>
                           <th>Email</th>
@@ -78,7 +79,8 @@
                       <tbody>
                         <% for (var i =0; i< teacher.length; i++){ %>
                           <tr>
-                            <td><%=teacher[i].tid%></td>
+                            <td><%= i+1 %></td>
+                            <td><a href="/admin/tview/<%=teacher[i].tid%>"><%=teacher[i].tid%></a></td>
                             <td><%=teacher[i].name%></td>
                             <td><%=teacher[i].email%></td>
                             <td><%=teacher[i].gender%></td>

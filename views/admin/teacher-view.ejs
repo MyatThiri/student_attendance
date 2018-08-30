@@ -41,11 +41,21 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <h1><%=title%></h1>
-            <p>Welcome to <%=title%></p>
-            <% if(user) {%>
-              Welcome <%=user.name%>
-            <% } %>
+            <h1>Teacher View</h1>
+            <div class="col-md-8 col-sm-8 col-xs-16 profile_details">
+            <div class="col-sm-12">
+              <div class="left col-xs-7">
+                <h2> ID: <%= teacher.tid %> <br></h2>
+                <h4><i class="fa fa-user"></i>  Name: <%= teacher.name %> </h4>
+                <h4><i class="fa fa-envelope"></i> Email: <%= teacher.email %></h4>
+                <h4><i class="fa fa-group"></i>  Gender: <%= teacher.gender %></h4>
+                <h4><i class="fa fa-institution"></i>  Department: <%= teacher.department %></h4>
+                <h4><i class="fa fa-phone"></i>Phone Number: <%= teacher.ph_number %></h4>
+                <h4><i class="fa fa-calendar"></i>   Updated: <%= teacher.updated %></h4>
+                 <a href="/admin/teacherlist">Go to list</a>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
         <!-- /page content -->

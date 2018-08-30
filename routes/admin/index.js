@@ -30,11 +30,14 @@ router.get('/teacherlist', function(req,res,next){
       if (err) next (err);
       res.render('admin/teacher-list',{teacher:teacher});
     })
-
 });
 
-router.get('/viewteacher', function(req,res,next){
-  res.render('admin/teacher-view',{title:'Teacher View'})
+router.get('/tview/:id', function(req,res,next){
+  Teacher.findById(req.params.id,function(err,teacher){
+    if(err) throw err;
+    if(teacher.length == 0) next (new Error('Teacher data not found!'));
+      res.render('admin/teacher-view',{title:'Teacher View',teacher: teacher[0]});
+  });
 });
 
 router.get('/studentadd', function(req,res,next){

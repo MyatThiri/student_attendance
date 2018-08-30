@@ -12,6 +12,11 @@ var Teacher = {
     return db.query(sql, [email], callback);
   },
 
+  findById: function(tid,callback){
+    var sql = "SELECT tid,name,email,gender,department,ph_number,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM teacher WHERE tid = ?";
+    return db.query (sql, [tid], callback);
+  },
+
   find: function(params, callback){
     console.log('dbcall');
     var sql = "SELECT tid,name,email,gender,department,ph_number,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM teacher";
