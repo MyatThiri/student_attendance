@@ -18,7 +18,7 @@ router.post('/addteacher', function(req, res, next){
   Teacher.add(params, function(err,teacher){
     if(err) next (err);
     // TODO add messages
-    res.redirect('/admin/teacher-list');
+    res.redirect('/admin/teacherlist');
   });
 });
 
@@ -35,8 +35,40 @@ router.get('/teacherlist', function(req,res,next){
 router.get('/tview/:id', function(req,res,next){
   Teacher.findById(req.params.id,function(err,teacher){
     if(err) throw err;
+    console.log('///',teacher);
     if(teacher.length == 0) next (new Error('Teacher data not found!'));
       res.render('admin/teacher-view',{title:'Teacher View',teacher: teacher[0]});
+  });
+});
+
+router.get('/tmodify/:tid', function(req,res,next){
+  Teacher.findById(req.params.tid,function(err,teacher){
+    if (err) throw err;
+    if(teacher.length == 0) next(new Error('Teacher data not found!'));
+    res.render('admin/teacher-modify', {title: 'Teacher View', teacher: teacher[0]});
+  });
+});
+
+router.post('/tmodify', function(req,res,next){
+  var params = [req.body.name,req.body.email,req.body.gender,req.body.dept,req.body.ph_number,req.body.tid];
+  console.log('req.body.tid',req.body.tid);
+  Teacher.findById(req.body.tid,function(err,teacher){
+    if (err) throw err;
+    console.log(teacher);
+    if(teacher.length == 0) next(new Error('Teacher data not found!'));
+    Teacher.update(params, function(teacherr,tteacher){
+      if (teacherr) throw teacherr;
+      req.flash('info', 'Success');
+      res.redirect('/admin/tview/' + teacher[0].tid);
+    });
+  });
+});
+
+router.post('/remove', function(req,res,next){
+  Teacher.remove(req.body.tid, function(err, teacher){
+    if (err) throw err;
+    req.flash('info', 'Successfully');
+    res.redirect('/admin/teacherlist');
   });
 });
 
@@ -64,7 +96,7 @@ router.get('/studentlist', function(req,res,next){
   })
 });
 
-router.get('/view/:id', function(req,res,next){
+router.get('/sview/:id', function(req,res,next){
   Student.findById(req.params.id,function(err,student){
     if(err) throw err;
     if(student.length == 0) next (new Error('Student data not found!'));

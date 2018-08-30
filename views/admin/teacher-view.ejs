@@ -45,14 +45,18 @@
             <div class="col-md-8 col-sm-8 col-xs-16 profile_details">
             <div class="col-sm-12">
               <div class="left col-xs-7">
-                <h2> ID: <%= teacher.tid %> <br></h2>
-                <h4><i class="fa fa-user"></i>  Name: <%= teacher.name %> </h4>
-                <h4><i class="fa fa-envelope"></i> Email: <%= teacher.email %></h4>
-                <h4><i class="fa fa-group"></i>  Gender: <%= teacher.gender %></h4>
-                <h4><i class="fa fa-institution"></i>  Department: <%= teacher.department %></h4>
-                <h4><i class="fa fa-phone"></i>Phone Number: <%= teacher.ph_number %></h4>
-                <h4><i class="fa fa-calendar"></i>   Updated: <%= teacher.updated %></h4>
-                 <a href="/admin/teacherlist">Go to list</a>
+                <form  name="frm" action="/admin/remove" method="post">
+                  <h2><input type="hidden" name="tid" value="<%= teacher.tid %>"></h2>
+                  <h4><i class="fa fa-user"></i>  Name: <%= teacher.name %> </h4>
+                  <h4><i class="fa fa-envelope"></i> Email: <%= teacher.email %></h4>
+                  <h4><i class="fa fa-group"></i>  Gender: <%= teacher.gender %></h4>
+                  <h4><i class="fa fa-institution"></i>  Department: <%= teacher.department %></h4>
+                  <h4><i class="fa fa-phone"></i>Phone Number: <%= teacher.ph_number %></h4>
+                  <h4><i class="fa fa-calendar"></i>   Updated: <%= teacher.updated %></h4>
+                  <a href="/admin/teacherlist"><strong>Go to list</strong></a>
+                  <a href="/admin/tmodify/<%=teacher.tid%>"><strong>Modify</strong></a>
+                  <a href="javascript:del()"><strong>Remove</strong></a>
+                </form>
               </div>
             </div>
             </div>
@@ -67,4 +71,11 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    function del() {
+    if(confirm('Are you sure?')){
+      frm.submit();
+    }
+}
+  </script>
 </html>

@@ -42,7 +42,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>ADD TEACHER</h3>
+                <h3>Modify Teacher View</h3>
               </div>
 
             </div>
@@ -57,49 +57,50 @@
                   </div>
                   <div class="x_content">
 
-                    <form action="/admin/addteacher" name="frm" method="post" id="frm" class="form-horizontal form-label-left" novalidate>
+                    <form action="/admin/tmodify" name="frm" method="post" id="frm" class="form-horizontal form-label-left" novalidate>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text" value="<%=teacher.name%>">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ID">ID <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">ID <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="ID" name="id" required="required" class="form-control col-md-7 col-xs-12">
+                          <%=teacher.tid%>
+                          <input type="hidden" value="<%=teacher.tid%>" name="tid">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"> Email <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="email" id="email2" name="email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="email" id="email2" value="<%=teacher.email%>" name="email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
                              Male:
-                             <input type="radio" name="gender" id="genderM" value="M" checked="" required />
+                             <input type="radio"  name="gender" value="<%=teacher.gender%>" id="genderM" value="M" checked="" required />
                              Female:
-                             <input type="radio" name="gender" id="genderF" value="F" />
+                             <input type="radio"  name="gender" value="<%=teacher.gender%>" id="genderF" value="F" />
                            </div>
                          </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Phone Number <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="number" name="number" value="<%=teacher.ph_number%>" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dept">Department <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="dept">
+                          <select class="optional form-control col-md-7 col-xs-12" name="dept" value="<%=teacher.dept%>">
                             <option value="">All</option>
                             <option value="Civil">Civil</option>
                             <option value="EC">EC</option>
@@ -110,16 +111,10 @@
                           </select>
                         </div>
                       </div>
-                      <div class="item form-group">
-                        <label for="password" class="control-label col-md-3">Password</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="password" type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
-                        </div>
-                      </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                          <button id="send" type="submit" class="btn btn-success">Modify</button>
                         </div>
                       </div>
                     </form>
@@ -140,4 +135,7 @@
     <% include ../partial/script %>
 
   </body>
+  <script type="text/javascript">
+    frm.role.value = '<%=teacher.role %>'
+  </script>
 </html>

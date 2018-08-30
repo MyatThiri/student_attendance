@@ -14,6 +14,7 @@ var Teacher = {
 
   findById: function(tid,callback){
     var sql = "SELECT tid,name,email,gender,department,ph_number,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM teacher WHERE tid = ?";
+    console.log(sql, tid);
     return db.query (sql, [tid], callback);
   },
 
@@ -22,6 +23,17 @@ var Teacher = {
     var sql = "SELECT tid,name,email,gender,department,ph_number,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM teacher";
     return db.query(sql, params, callback);
   },
+
+  update: function(params, callback){
+    var sql = "UPDATE teacher SET name =?,email =?,gender =?,department =?,ph_number =?,updated = NOW() WHERE tid = ?";
+    return db.query(sql, params, callback);
+  },
+
+  remove: function(tid, callback) {
+    var sql = "DELETE FROM teacher WHERE tid = ?";
+    return db.query(sql, [tid], callback);
+  },
+
   compare:function(cleartext,encrypted){
     return bcrypt.compareSync(cleartext,encrypted);
   },
