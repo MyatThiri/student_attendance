@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 var Teacher = require('../models/Teacher');
+var Subj = require('../models/Subj');
 
 /* GET plain page. */
 router.get('/', function(req, res, next) {
@@ -74,4 +75,5 @@ router.get('/signin', function(req, res, next){
      req.session.destroy();
      res.redirect('/');
    });
+   
 module.exports = router;

@@ -7,6 +7,7 @@ var session = require('express-session');
 var flash = require('express-flash');
 var indexRouter = require('./routes/index');
 var admin = require('./routes/admin/index');
+var schedule = require('./routes/schedule/index');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(flash());// after cookie, session
 
 app.use('/', indexRouter);
 app.use('/admin',admin);
+app.use('/schedule',schedule);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

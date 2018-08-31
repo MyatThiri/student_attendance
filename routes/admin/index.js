@@ -35,7 +35,6 @@ router.get('/teacherlist', function(req,res,next){
 router.get('/tview/:id', function(req,res,next){
   Teacher.findById(req.params.id,function(err,teacher){
     if(err) throw err;
-    console.log('///',teacher);
     if(teacher.length == 0) next (new Error('Teacher data not found!'));
       res.render('admin/teacher-view',{title:'Teacher View',teacher: teacher[0]});
   });
@@ -50,7 +49,7 @@ router.get('/tmodify/:tid', function(req,res,next){
 });
 
 router.post('/tmodify', function(req,res,next){
-  var params = [req.body.name,req.body.email,req.body.gender,req.body.dept,req.body.ph_number,req.body.tid];
+  var params = [req.body.name,req.body.email,req.body.gender,req.body.dept,req.body.number,req.body.tid];
   console.log('req.body.tid',req.body.tid);
   Teacher.findById(req.body.tid,function(err,teacher){
     if (err) throw err;
@@ -104,13 +103,35 @@ router.get('/sview/:id', function(req,res,next){
   });
 });
 
-router.get('/drawtimetable', function(req,res,next){
-    res.render('admin/draw-timetable1')
+router.get('/smodify/:sid', function(req,res,next){
+  Student.findById(req.params.sid,function(err,student){
+    if (err) throw err;
+    if(student.length == 0) next (new Error('Student data not found!'));
+    res.render('admin/student-modify', {title: 'Student View', student: student[0]});
+  });
 });
 
-router.get('/viewtimetable', function(req,res,next){
-    res.render('admin/view-timetable')
+router.post('/smodify', function(req,res,next){
+  var params = [req.body.name,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.sid];
+  Student.findById(req.body.sid,function(err,student){
+    if (err) throw err;
+    if(student.length == 0) next (new Error('Student data not found!'));
+    Student.update(params, function(studentt, sstudent){
+      if(studentt) throw studentt;
+      req.flash('info', 'Success');
+      res.redirect('/admin/sview/' + student[0].sid);
+    });
+  });
 });
+
+router.post('/remove', function(req,res,next){
+  Student.remove(req.body.sid,function(err,student){
+    if (err) throw err;
+    // req.flash('info', 'Successfully');
+    res.redirect('/admin/studentlist');
+  });
+});
+
 
 router.get('/viewattendance', function(req,res,next){
     res.render('admin/view-attendance')
