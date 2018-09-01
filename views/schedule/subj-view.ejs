@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partial/head %>
+
+    <title>SAM System </title>
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-bell-o"></i> <span>SAM System</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <% include ../partial/menu_profile %>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <% include ../partial/sidebar %>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <% include ../partial/menu_footer %>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <% include ../partial/top_nav %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- <div class=""> -->
+          <h1>Subject View</h1>
+            &nbsp
+            <div class="col-md-18 col-sm-18 col-xs-36 profile_details">
+            <!-- <div class="well profile_view"> -->
+            <div class="col-sm-12">
+              <div class="left col-xs-7">
+                <form action="/admin/remove" name="frm" method="post">
+                    <h2><input type="hidden" name="id", value="<%=subj.subj_id%>"</h2>
+                    <h4><i class="fa fa-book"></i>  Subject Name: <%= subj.subj_name %> </h4>
+                    <h4><i class="fa fa-edit"></i> Code: <%= subj.code %></h4>
+                    <h4><i class="fa fa-institution"></i>  Department: <%= subj.dept_id %></h4>
+                    <h4><i class="fa fa-calendar"></i>   Updated: <%= subj.updated %></h4>
+                    <a href="/admin/subjlist"><strong>Go to list</strong></a>
+                    <a href="/admin/subjmodify/<%=subj.sid%>"><strong>Modify</strong></a>
+                    <a href="javascript:del()"><strong>Remove</strong></a>
+                </form>
+            </div>
+            </div>
+              </div>
+            <!-- </div> -->
+          <!-- </div> -->
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <% include  ../partial/footer %>
+        <!-- /footer content -->
+        <% include ../partial/script %>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    function del(){
+      if(confirm('Are you sure?')){
+        frm.submit();
+      }
+    }
+  </script>
+</html>
