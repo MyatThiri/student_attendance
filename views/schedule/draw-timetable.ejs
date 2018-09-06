@@ -57,19 +57,20 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" novalidate>
+                    <form action="/schedule/drawtimetable" method="post" name="frm" id="frm" class="form-horizontal form-label-left" novalidate>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dept">Department <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="dept">
-                            <option value="">Select Department</option>
-                            <option value="1">IT</option>
-                            <option value="2">Civil</option>
-                            <option value="3">EC</option>
-                            <option value="4">EP</option>
-                            <option value="5">MP</option>
-                            <option value="6">MC</option>
+                          <select class="optional form-control col-md-7 col-xs-12" name="dept" id="dept">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tname">Teacher Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="optional form-control col-md-7 col-xs-12" name="tname" id="tname">
                           </select>
                         </div>
                       </div>
@@ -77,8 +78,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="subj">Subject <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="subj">
-                            <option value="">Select Subject</option>
+                          <select class="optional form-control col-md-7 col-xs-12" name="subj" id="subj">
                           </select>
                         </div>
                       </div>
@@ -97,38 +97,34 @@
                           </select>
                         </div>
                       </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Teacher Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">
-                        </div>
-                      </div>
+
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start">Start Time<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="start" type="time" name="dept" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                          <input id="start" type="time" name="stime" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label for="password" class="control-label col-md-3">End Time<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="end" type="time" name="end" data-validate-length="5,20" class="form-control col-md-7 col-xs-12" required="required">
+                          <input id="end" type="time" name="etime" data-validate-length="5,20" class="form-control col-md-7 col-xs-12" required="required">
                         </div>
                       </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-6" for="start">Date<span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div class='input-group date' id='myDatepicker2'>
-                                  <input type='text' class="form-control" />
-                                  <span class="input-group-addon">
-                                     <span class="glyphicon glyphicon-calendar"></span>
-                                  </span>
-                              </div>
-                          </div>
-                          </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Date <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="optional form-control col-md-7 col-xs-12" name="date">
+                            <option value="">Date</option>
+                            <option value="Mon">Monday</option>
+                            <option value="Tue">Tuesday</option>
+                            <option value="Wed">Wednesday</option>
+                            <option value="Thu">Thursday</option>
+                            <option value="Fri">Friday</option>
+                          </select>
+                        </div>
+                      </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
@@ -160,16 +156,6 @@
   <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
   <script>
-      $('#myDatepicker').datetimepicker();
-
-      $('#myDatepicker2').datetimepicker({
-          format: 'DD.MM.YYYY'
-      });
-
-      $('#myDatepicker4').datetimepicker({
-          ignoreReadonly: true,
-          allowInputToggle: true
-      });
 
       $('#datetimepicker6').datetimepicker();
 
@@ -184,5 +170,31 @@
       $("#datetimepicker7").on("dp.change", function(e) {
           $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
       });
+      var tb = [];
+
+      <%for(var i in data){%>
+        tb.push({"dept":"<%=data[i].dept_id%>","tname":"<%=data[i].name%>","subj":"<%=data[i].subj_name%>"});
+
+      <%}%>
+      // var tb = <%- data %>;
+      console.log('/////',tb);
+        addOptions('dept', tb);
+        $("#dept").on('change', function(){
+          var tb2 = $.grep(tb, function(n,i){
+            return n.dept == $("#dept").val();
+          });
+          addOptions('tname',tb2);
+          addOptions('subj',tb2);
+        });
+
+        function addOptions(id,arr){
+          $("#"+id).children().remove();
+          for(var idx in arr){
+            if(idx == 0) $("#"+id).append(new Option('Select '+((id=="dept")? "Department":((id=="tname")? "Teacher": "Subject")), ''));
+            if(idx == 0 || arr[idx][id] != arr[idx-1][id]){
+              $("#"+id).append(new Option(arr[idx][id], arr[idx][id]));
+            }
+          }
+        }
   </script>
 </html>

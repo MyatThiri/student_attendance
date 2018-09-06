@@ -1,13 +1,36 @@
 var express = require('express');
 var router = express.Router();
 var Subj = require('../../models/Subj');
+var Teacher = require('../../models/Teacher');
+var Timetable = require('../../models/Timetable');
 
 router.get('/drawtimetable', function(req,res,next){
-    res.render('schedule/draw-timetable1')
+    Teacher.joinSubj({},function(err,data){
+      console.log(data);
+      res.render('schedule/draw-timetable',{data:data});
+    });
+
 });
 
-router.get('/viewtimetable', function(req,res,next){
-    res.render('schedule/view-timetable')
+router.post('/drawtimetable', function(req,res,next){
+  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,req.body.date];
+  Timetable.add(params, function(err,timetable){
+    if (err) next (err);
+    req.flash('warn', 'Insert Success');
+    res.redirect ('/schedule/viewtimetable/'+timetable.insertId);
+  });
+});
+
+router.get('/viewtimetable/:id', function(req,res,next){
+    Timetable.findById(req.params.id,function(err,timetable){
+      if (err) throw err;
+      if(timetable.length == 0) next (new Error ('Timetable data not found!'));
+      res.render('schedule/view-timetable',{title:'Timetable View', timetable:timetable[0]});
+    });
+});
+
+router.get('/timetablelist',function(req,res,next){
+  res.render('schedule/timetable-list')
 });
 
 router.get('/addsubj', function(req,res,next){

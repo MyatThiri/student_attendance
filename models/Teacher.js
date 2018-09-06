@@ -24,6 +24,11 @@ var Teacher = {
     return db.query(sql, params, callback);
   },
 
+  joinSubj: function(params, callback){
+    var sql = "SELECT t.dept_id, t.name, s.subj_name FROM teacher AS t JOIN subject AS s USING(dept_id)";
+    return db.query(sql,params,callback);
+  },
+
   update: function(params, callback){
     var sql = "UPDATE teacher SET name =?,email =?,gender =?,dept_id =?,ph_number =?,updated = NOW() WHERE tid = ?";
     return db.query(sql, params, callback);
