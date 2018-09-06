@@ -52,7 +52,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h1>Student List</h1>
+                <h1>Subject List</h1>
               </div>
 
             </div>
@@ -67,32 +67,26 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Gender</th>
-                          <th>Phone Number</th>
+                          <th>Subject Name</th>
+                          <th>Code</th>
                           <th>Department</th>
-                          <th>Class</th>
                           <th>Updated</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <% for (var i=0; i< student.length; i++){ %>
+                        <% for (var i=0; i< subj.length; i++){ %>
                           <tr>
                             <td><%= i+1 %></td>
-                            <td><a href="/admin/sview/<%=student[i].sid%>"><%=student[i].name%></a></td>
-                            <td><%=student[i].email%></td>
-                            <td><%=student[i].gender%></td>
-                            <td><%=student[i].ph_number%></td>
-                            <td> <%= student[i].dept_name %></td>
-                            <td><%=student[i].class%></td>
-                            <td><%=student[i].updated%></td>
+                            <td><a href="/schedule/subjview/<%=subj[i].subj_id%>"><%=subj[i].subj_name%></a></td>
+                            <td><%=subj[i].code%></td>
+                            <td><%=subj[i].dept_name%></td>
+                            <td><%=subj[i].updated%></td>
                           </tr>
                         <% } %>
                       </tbody>
                     </table>
                   </div>
-                    <a href="/admin/studentadd">Add Student</a>
+                    <a href="/schedule/addsubj">Add Subject</a>
                 </div>
               </div>
 

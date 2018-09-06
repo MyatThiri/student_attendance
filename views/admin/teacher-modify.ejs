@@ -58,6 +58,7 @@
                   <div class="x_content">
 
                     <form action="/admin/tmodify" name="frm" method="post" id="frm" class="form-horizontal form-label-left" novalidate>
+                      <input type="hidden" value="<%=teacher.tid%>" name="tid">
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >Name <span class="required">*</span>
                         </label>
@@ -65,15 +66,7 @@
                           <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text" value="<%=teacher.name%>">
                         </div>
                       </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">ID <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <%=teacher.tid%>
-                          <input type="hidden" value="<%=teacher.tid%>" name="tid">
-                        </div>
-                      </div>
-                      <div class="item form-group">
+                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"> Email <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -84,9 +77,9 @@
                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
                              Male:
-                             <input type="radio"  name="gender" value="<%=teacher.gender%>" id="genderM" value="M" checked="" required />
+                             <input type="radio"  name="gender"  id="gender" value="M"  required />
                              Female:
-                             <input type="radio"  name="gender" value="<%=teacher.gender%>" id="genderF" value="F" />
+                             <input type="radio"  name="gender"  id="gender" value="F" />
                            </div>
                          </div>
                       <div class="item form-group">
@@ -100,14 +93,13 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dept">Department <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="dept" value="<%=teacher.department%>">
-                            <option value="">All</option>
-                            <option value="Civil">Civil</option>
-                            <option value="EC">EC</option>
-                            <option value="EP">EP</option>
-                            <option value="MP">MP</option>
-                            <option value="MC">MC</option>
-                            <option value="IT">IT</option>
+                          <select class="optional form-control col-md-7 col-xs-12" name="dept" id="dept">
+                            <option value="1">IT</option>
+                            <option value="2">Civil</option>
+                            <option value="3">EC</option>
+                            <option value="4">EP</option>
+                            <option value="5">MP</option>
+                            <option value="6">MC</option>
                           </select>
                         </div>
                       </div>
@@ -136,6 +128,7 @@
 
   </body>
   <script type="text/javascript">
-    frm.role.value = '<%=teacher.role %>'
+    $('#dept').val("<%=teacher.dept_id%>").change();
+    $('input:radio[name="gender"][value="<%=teacher.gender%>"]').attr('checked',true);
   </script>
 </html>

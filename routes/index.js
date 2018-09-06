@@ -75,5 +75,5 @@ router.get('/signin', function(req, res, next){
      req.session.destroy();
      res.redirect('/');
    });
-   
+
 module.exports = router;

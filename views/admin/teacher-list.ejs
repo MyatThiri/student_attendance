@@ -67,7 +67,6 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>ID</th>
                           <th>Name</th>
                           <th>Email</th>
                           <th>Gender</th>
@@ -80,11 +79,11 @@
                         <% for (var i =0; i< teacher.length; i++){ %>
                           <tr>
                             <td><%= i+1 %></td>
-                            <td><a href="/admin/tview/<%=teacher[i].tid%>"><%=teacher[i].tid%></a></td>
-                            <td><%=teacher[i].name%></td>
+                            <!-- <td><a href="/admin/tview/<%=teacher[i].tid%>"><%=teacher[i].tid%></a></td> -->
+                            <td><a href="/admin/tview/<%= teacher[i].tid%>"><%=teacher[i].name%></a></td>
                             <td><%=teacher[i].email%></td>
                             <td><%=teacher[i].gender%></td>
-                            <td><%=teacher[i].department%></td>
+                            <td><%=teacher[i].dept_name%></td>
                             <td><%=teacher[i].ph_number%></td>
                             <td><%=teacher[i].updated%></td>
                           </tr>
@@ -92,6 +91,7 @@
                       </tbody>
                     </table>
                   </div>
+                  <a href="/admin/addteacher">Add Teacher</a>
                 </div>
               </div>
 

@@ -59,14 +59,7 @@
                   <div class="x_content">
 
                     <form action="/admin/smodify" name="frm" id="frm" class="form-horizontal form-label-left" novalidate method="post">
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">ID <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <%=student.sid%>
-                          <input type="hidden"  value="<%=student.sid%>" name="sid" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
+                      <input type="hidden" value="<%=student.sid%>" name="sid">
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                         </label>
@@ -85,30 +78,29 @@
                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
                               Male:
-                             <input type="radio"  name="gender" id="genderM" value="<%=student.gender%>"  checked="" required />
+                             <input type="radio"  name="gender" id="gender" value="M"  required />
                              Female:
-                            <input type="radio"  name="gender" id="genderF" value="<%=student.gender%>" />
+                            <input type="radio"  name="gender" id="gender" value="F" />
                           </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Phone Number <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="number" type="text" name="number" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                          <input id="number" type="text" value="<%=student.ph_number%>" name="number" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dept">Department <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="dept" value="<%=student.dept%>">
-                            <option value="">Select Department</option>
-                            <option value="Civil">Civil</option>
-                            <option value="EC">EC</option>
-                            <option value="EP">EP</option>
-                            <option value="MP">MP</option>
-                            <option value="MC">MC</option>
-                            <option value="IT">IT</option>
+                          <select class="optional form-control col-md-7 col-xs-12" id="dept" name="dept">
+                            <option value="1">IT</option>
+                            <option value="2">Civil</option>
+                            <option value="3">EC</option>
+                            <option value="4">EP</option>
+                            <option value="5">MP</option>
+                            <option value="6">MC</option>
                           </select>
                         </div>
                       </div>
@@ -116,8 +108,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="class">Class <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="class" value="<%=student.class%>">
-                            <option value="">Select Class</option>
+                          <select class="optional form-control col-md-7 col-xs-12" id="class" name="class" >
                             <option value="1BE">1BE</option>
                             <option value="2BE">2BE</option>
                             <option value="3BE">3BE</option>
@@ -152,6 +143,9 @@
 
   </body>
   <script type="text/javascript">
-     frm.role.value = '<%=student.role %>'
+  console.log("<%=student.dept%>");
+    $('#dept').val("<%=student.dept_id%>").change();
+    $('#class').val("<%=student.class%>").change();
+    $('input:radio[name="gender"][value="<%=student.gender%>"]').attr('checked',true);
    </script>
 </html>

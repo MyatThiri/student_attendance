@@ -3,7 +3,7 @@ CREATE TABLE db_SAMS.teacher (
   name VARCHAR(45) NOT NULL,
   email VARCHAR(128) NOT NULL,
   gender VARCHAR(15) NOT NULL,
-  department VARCHAR(15) NOT NULL,
+  dept_id INT NOT NULL REFERENCES dept(dept_id),
   ph_number INT NOT NULL,
   password VARCHAR(128) NOT NULL,
   inserted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

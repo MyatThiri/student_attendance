@@ -14,7 +14,7 @@ router.get('/addteacher', function(req,res,next){
 
 router.post('/addteacher', function(req, res, next){
   console.log('call');
-  var params = [req.body.id,req.body.name, req.body.email,req.body.gender,req.body.dept, req.body.number, req.body.password];
+  var params = [req.body.name, req.body.email,req.body.gender,req.body.dept, req.body.number, req.body.password];
   Teacher.add(params, function(err,teacher){
     if(err) next (err);
     // TODO add messages
@@ -76,7 +76,7 @@ router.get('/studentadd', function(req,res,next){
 });
 
 router.post ('/studentadd', function(req,res,next){
-  var params = [req.body.id,req.body.name,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.password];
+  var params = [req.body.name,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.password];
   Student.add(params, function(err,student){
     if(err) next (err);
   //TODO add messages

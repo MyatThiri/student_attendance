@@ -3,8 +3,8 @@ var bcrypt = require('bcrypt-nodejs');
 
 var Student = {
   add: function(params,callback){
-    var sql = 'INSERT INTO student (sid,name,email,gender,ph_number,department,class,password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-    params[7] = bcrypt.hashSync(params[7],bcrypt.genSaltSync(8),null);
+    var sql = 'INSERT INTO student (name,email,gender,ph_number,dept_id,class,password) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    params[6] = bcrypt.hashSync(params[6],bcrypt.genSaltSync(8),null);
     return db.query(sql, params, callback);
   },
 
@@ -14,18 +14,18 @@ var Student = {
   },
 
   findById: function(sid, callback) {
-    var sql = "SELECT sid,name,email,gender,ph_number,department,class,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM student WHERE sid = ?";
+    var sql = "SELECT sid, s.name, s.email, s.gender,s.ph_number,s.dept_id,s.class, DATE_FORMAT(s.updated, '%d/%m/%Y %H:%i') AS updated, d.dept_name FROM student AS s JOIN dept AS d USING(dept_id) WHERE s.sid = ?";
     return db.query (sql, [sid], callback);
   },
 
   find: function(params, callback){
     // var p = [];
-    var sql = "SELECT sid,name,email,gender, ph_number, department, class,DATE_FORMAT(updated, '%d/%m/%Y %H:%i') AS updated FROM student";
+    var sql = "SELECT sid, s.name, s.email, s.gender,s.ph_number,s.dept_id,s.class, DATE_FORMAT(s.updated, '%d/%m/%Y %H:%i') AS updated, d.dept_name FROM student AS s JOIN dept AS d USING(dept_id)";
     return db.query(sql, params, callback);
   },
 
   update: function(params, callback) {
-    var sql = "UPDATE student SET name =?, email =?,gender =?,ph_number =?,department =?,class =?,updated = NOW() WHERE sid = ?";
+    var sql = "UPDATE student SET name =?, email =?,gender =?,ph_number =?,dept_id =?,class =?,updated = NOW() WHERE sid = ?";
     return db.query(sql,params,callback);
   },
 
@@ -33,7 +33,7 @@ var Student = {
     var sql = "DELETE FROM student WHERE sid = ?";
     return db.query(sql, [sid], callback);
   },
-  
+
   compare:function(cleartext,encrypted){
     return bcrypt.compareSync(cleartext,encrypted);
   },
