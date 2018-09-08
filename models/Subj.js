@@ -1,5 +1,4 @@
 var db = require('../dbcon');
-var bcrypt = require('bcrypt-nodejs');
 
 var Subj = {
   add: function(params,callback){

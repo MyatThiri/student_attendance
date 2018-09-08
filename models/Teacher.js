@@ -25,7 +25,7 @@ var Teacher = {
   },
 
   joinSubj: function(params, callback){
-    var sql = "SELECT t.dept_id, t.name, s.subj_name FROM teacher AS t JOIN subject AS s USING(dept_id)";
+    var sql = "SELECT t.dept_id, t.name, s.subj_name FROM teacher AS t JOIN subject AS s USING(dept_id) ORDER BY dept_id, name";
     return db.query(sql,params,callback);
   },
 

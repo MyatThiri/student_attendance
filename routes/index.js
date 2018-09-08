@@ -56,16 +56,16 @@ router.get('/signin', function(req, res, next){
 
 /* POST signin page. */
  router.post('/signin', function(req, res, next) {
-   User.findByEmail(req.body.email, function(err,admin){
+   User.findByEmail(req.body.email, function(err,user){
      if(err) next (err);
-     if(admin.length == 0 || !User.compare(req.body.password,admin[0].password)){
+     if(user.length == 0 || !User.compare(req.body.password,user[0].password)){
        req.flash('warn', 'Email not exists or password not matched!!');
        res.redirect('/signin');
      }else{
-       req.session.users = { uid:admin[0].uid,uname:admin[0].name, email:admin[0].email }
-       if(req.body.rememberme) res.cookie('email',admin[0].email, {maxAge:864008*7});
+       req.session.users = { uid:user[0].uid,uname:user[0].name, email:user[0].email }
+       if(req.body.rememberme) res.cookie('email',user[0].email, {maxAge:864008*7});
        else res.cookie('email', '', {maxAge: 0});
-       res.redirect('/');
+       res.redirect('/home');
      }
      });
    });

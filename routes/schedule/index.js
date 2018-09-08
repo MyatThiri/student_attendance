@@ -1,19 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var Subj = require('../../models/Subj');
+var Dept = require('../../models/Dept');
 var Teacher = require('../../models/Teacher');
 var Timetable = require('../../models/Timetable');
 
 router.get('/drawtimetable', function(req,res,next){
-    Teacher.joinSubj({},function(err,data){
-      console.log(data);
-      res.render('schedule/draw-timetable',{data:data});
+  Dept.find([],function(err,depts){
+    if(err) next(err);
+    Teacher.joinSubj({},function(err2,data){
+      if(err2) next(err2);
+      res.render('schedule/draw-timetable',{data:data, depts: depts});
     });
+  });
 
 });
 
 router.post('/drawtimetable', function(req,res,next){
-  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,req.body.date];
+  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,Number(req.body.date)];
   Timetable.add(params, function(err,timetable){
     if (err) next (err);
     req.flash('warn', 'Insert Success');
@@ -24,13 +28,51 @@ router.post('/drawtimetable', function(req,res,next){
 router.get('/viewtimetable/:id', function(req,res,next){
     Timetable.findById(req.params.id,function(err,timetable){
       if (err) throw err;
+      console.log(timetable);
       if(timetable.length == 0) next (new Error ('Timetable data not found!'));
       res.render('schedule/view-timetable',{title:'Timetable View', timetable:timetable[0]});
     });
 });
 
 router.get('/timetablelist',function(req,res,next){
-  res.render('schedule/timetable-list')
+  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,req.body.date];
+  Timetable.find({params}, function(err,timetable){
+    if (err) next (err);
+    console.log(timetable);
+      res.render('schedule/timetable-list', {timetable:timetable});
+  });
+});
+
+router.get('/timetablemodify/:id', function(req,res,next){
+  Teacher.joinSubj({},function(err2,data){
+    if (err2) throw err2;
+  Timetable.findById(req.params.id,function(err,timetable){
+    if (err) throw err;
+    if(timetable.length == 0) next (new Error('Timetable data not found!'));
+    res.render('schedule/timetable-modify', {title: 'Timetable View', timetable: timetable[0], data: data});
+  });
+  });
+});
+
+router.post('/timetablemodify', function(req,res,next){
+  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,req.body.date,req.body.req.body.id];
+  Timetable.findById(req.body.id,function(err,timetable){
+    if (err) throw err;
+    if(timetable.length == 0) next (new Error('Timetable data not found!'));
+    Timetable.update(params,function(err2,ttimetable){
+      if (err2) throw err2;
+      req.flash('info', 'Success');
+      res.redirect('/schedule/viewtimetable/'+req.body.id);
+    });
+  });
+});
+
+router.post ('/remove', function(req,res,next){
+  Timetable.remove(req.body.id, function(err,timetable){
+    if (err) throw err;
+    req.flash('info', 'Successfully');
+    res.redirect('/schedule/timetablelist');
+  });
 });
 
 router.get('/addsubj', function(req,res,next){

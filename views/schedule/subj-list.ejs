@@ -16,6 +16,13 @@
 
   </head>
 
+  <style media="screen">
+    #head {
+     color: black;
+     background-color:#ffdb4d;
+    }
+  </style>
+  
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -65,7 +72,7 @@
                   <div class="x_content">
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
-                        <tr>
+                        <tr id="head">
                           <th>No</th>
                           <th>Subject Name</th>
                           <th>Code</th>
@@ -86,7 +93,7 @@
                       </tbody>
                     </table>
                   </div>
-                    <a href="/schedule/addsubj">Add Subject</a>
+                    <a href="/schedule/addsubj"><button type="button" class="btn btn-success btn-xs">Add Subject</button></a>
                 </div>
               </div>
 

@@ -48,15 +48,15 @@
               <div class="col-sm-12">
                 <div class="left col-xs-7">
                   <form action="/schedule/remove" name="frm" method="post">
-                      <h2><input type="hidden" name="id", value="<%=timetable.tb_id%>"</h2>
-                      <h4><i class="fa fa-book"></i> Department: <%= timetable.dept_name %> </h4>
-                      <h4><i class="fa fa-edit"></i> Teacher Name: <%= timetable.name %></h4>
-                      <h4><i class="fa fa-institution"></i>  Subject: <%= timetable.subj_name %></h4>
-                      <h4><i class="fa fa-institution"></i>  Class: <%= timetable.class %></h4>
-                      <h4><i class="fa fa-institution"></i>  Start Time: <%= timetable.start_time %></h4>
-                      <h4><i class="fa fa-institution"></i>  End Time: <%= timetable.end_time %></h4>
-                      <h4><i class="fa fa-institution"></i>  Date: <%= timetable.date_id %></h4>
-                      <h4><i class="fa fa-calendar"></i>   Updated: <%= timetable.updated %></h4>
+                      <h2><input type="hidden" name="id" value="<%=timetable.tb_id%>"</h2>
+                      <h4><i class="fa fa-institution"></i> &nbsp&nbsp Department: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="dept"><%= timetable.dept_id %></span> </h4>
+                      <h4><i class="fa fa-user"></i> &nbsp&nbsp Teacher Name:&nbsp&nbsp&nbsp&nbsp&nbsp <%= timetable.name %></h4>
+                      <h4><i class="fa fa-book"></i>  &nbsp&nbsp Subject:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= timetable.subj_name %></h4>
+                      <h4><i class="fa fa-columns"></i>  &nbsp&nbsp Class:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= timetable.class %></h4>
+                      <h4><i class="fa fa-bell"></i>  &nbsp&nbsp Start Time: &nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.start_time %></h4>
+                      <h4><i class="fa fa-bell-slash"></i>  &nbsp&nbsp End Time: &nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.end_time %></h4>
+                      <h4><i class="fa fa-calendar-o"></i>  &nbsp&nbsp Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="date"><%= timetable.date_id %></span></h4>
+                      <h4><i class="fa fa-calendar"></i>  &nbsp&nbsp Updated: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.updated %></h4>
                       <a href="/schedule/timetablelist"><strong>Go to list</strong></a>
                       <a href="/schedule/timetablemodify/<%=timetable.tb_id%>"><strong>Modify</strong></a>
                       <a href="javascript:del()"><strong>Remove</strong></a>
@@ -77,14 +77,59 @@
     </div>
   </body>
   <script type="text/javascript">
+  console.log('<%=timetable.tb_id%>');
     function del(){
       if(confirm('Are you sure?')){
         frm.submit();
       }
     }
-    if(messages){
-      console.log('info work');
-      alert(messages.info);
+    // if(messages){
+    //   console.log('info work');
+    //   alert(messages.info);
+    // }
+    console.log($('#dept').html());
+    switch ('<%=timetable.dept_id%>') {
+        case '1':
+          $('#dept').html('IT');
+        break;
+        case '2':
+          $('#dept').html('Civil');
+        break;
+        case '3':
+          $('#dept').html('EC');
+        break;
+        case '4':
+          $('#dept').html('EP');
+        break;
+        case '5':
+          $('#dept').html('MP');
+        break;
+        case '6':
+          $('#dept').html('MC');
+        break;
+      default:
+       $('#dept').html('Not selected data!');
     }
+
+    console.log($('#date').html());
+    switch ('<%=timetable.date_id%>') {
+        case '1':
+          $('#date').html('Monday');
+        break;
+        case '2':
+          $('#date').html('Tuesday');
+        break;
+        case '3':
+          $('#date').html('Wednesday');
+        break;
+        case '4':
+          $('#date').html('Thursday');
+        break;
+        case '5':
+          $('#date').html('Friday');
+        break;
+        default:
+         $('#date').html('Not selected date!');
+       }
   </script>
 </html>

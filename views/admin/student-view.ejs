@@ -6,6 +6,25 @@
     <title>SAM System </title>
 
   </head>
+  <style media="screen">
+    #stu{
+      color: black;
+      border: 1px,solid,red;
+      background-color:#ccf2ff;
+      border-radius: 15px;
+      width: 1025px;
+      height: 450px;
+      padding-left: 50px;
+      padding-top: 50px;
+      margin-left: 10px;
+      margin-top: 20px;
+      padding-left: 350px;
+    }
+    h1{
+      color: black;
+      margin-top: 10px;
+    }
+  </style>
 
   <body class="nav-md">
     <div class="container body">
@@ -41,23 +60,26 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <!-- <div class=""> -->
-          <h1>Student View</h1>
+
             <div class="col-md-8 col-sm-8 col-xs-16 profile_details">
             <!-- <div class="well profile_view"> -->
             <div class="col-sm-12">
-              <div class="left col-xs-7">
+              <div class="left col-xs-7" id="stu">
+                <h1>Student View</h1>
+                <br>
                 <form action="/admin/remove" name="frm" method="post">
                   <h2><input type="hidden" name="sid", value="<%=student.sid%>"</h2>
-                  <h4><i class="fa fa-user"></i>  Name: <%= student.name %> </h4>
-                  <h4><i class="fa fa-envelope"></i> Email: <%= student.email %></h4>
-                  <h4><i class="fa fa-group"></i>  Gender: <%= student.gender %></h4>
-                  <h4><i class="fa fa-phone"></i>Phone Number: <%= student.ph_number %></h4>
-                  <h4><i class="fa fa-institution"></i>  Department: <%= student.dept_name %></h4>
-                  <h4><i class="fa fa-th"></i>  Class: <%= student.class %></h4>
-                  <h4><i class="fa fa-calendar"></i>   Updated: <%= student.updated %></h4>
-                  <a href="/admin/studentlist"><strong>Go to list</strong></a>
-                  <a href="/admin/smodify/<%=student.sid%>"><strong>Modify</strong></a>
-                  <a href="javascript:del()"><strong>Remove</strong></a>
+                  <h4><i class="fa fa-user"></i>  &nbsp Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <%= student.name %> </h4>
+                  <h4><i class="fa fa-envelope"></i> &nbsp Email: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= student.email %></h4>
+                  <h4><i class="fa fa-group"></i>  &nbsp Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= student.gender %></h4>
+                  <h4><i class="fa fa-phone"></i>&nbsp&nbsp Phone Number:&nbsp&nbsp&nbsp&nbsp&nbsp <%= student.ph_number %></h4>
+                  <h4><i class="fa fa-institution"></i> &nbsp Department: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= student.dept_name %></h4>
+                  <h4><i class="fa fa-columns"></i>  &nbsp Class: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= student.class %></h4>
+                  <h4><i class="fa fa-calendar"></i>  &nbsp Updated: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= student.updated %></h4>
+                  <br><br>
+                  <a href="/admin/studentlist"><strong> <button type="button" class="btn btn-primary">Go to list</button></strong></a>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp<a href="/admin/smodify/<%=student.sid%>"><strong> <button type="button" class="btn btn-warning">Modify</button></strong></a>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="javascript:del()"><strong> <button type="button" class="btn btn-danger">Delete</button></strong></a>
               </form>
               </div>
             </div>

@@ -16,6 +16,13 @@
 
   </head>
 
+  <style media="screen">
+    #head {
+     color: black;
+     background-color:#ffdb4d;
+    }
+  </style>
+
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -52,7 +59,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h1>Timetable</h1>
+                <h1>Timetable List</h1>
               </div>
 
             </div>
@@ -65,171 +72,84 @@
                   <div class="x_content">
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
-                        <tr>
-                          <th>Teacher's Name</th>
-                          <th>Class</th>
+                        <tr id="head">
+                          <th>No</th>
+                          <th>Department</th>
+                          <th>Teacher Name</th>
                           <th>Subject</th>
+                          <th>Class</th>
                           <th>Start Time</th>
                           <th>End Time</th>
                           <th>Date</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Dr. Su Mon Thu</td>
-                          <td>5BE</td>
-                          <td>ACN II</td>
-                          <td>8:30</td>
-                          <td>9:30</td>
-                          <td>Monday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Myint Myint Khaing</td>
-                          <td>5BE</td>
-                          <td>ES</td>
-                          <td>9:35</td>
-                          <td>10:35</td>
-                          <td>Monday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Myat Thidar Soe</td>
-                          <td>5BE</td>
-                          <td>CC</td>
-                          <td>10:40</td>
-                          <td>11:40</td>
-                          <td>Monday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw San Lei Lei Win</td>
-                          <td>5BE</td>
-                          <td>DIP</td>
-                          <td>12:40</td>
-                          <td>2:45</td>
-                          <td>Monday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw May Thae Cho Zin</td>
-                          <td>5BE</td>
-                          <td>COD</td>
-                          <td>8:30</td>
-                          <td>10:35</td>
-                          <td>Tuesday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Zo Ngaight Kyin</td>
-                          <td>5BE</td>
-                          <td>DSP</td>
-                          <td>10:40</td>
-                          <td>11:40</td>
-                          <td>Tuesday</td>
-                        </tr>
-                        <tr>
-                          <td>U Thuya</td>
-                          <td>5BE</td>
-                          <td>WEB</td>
-                          <td>12:40</td>
-                          <td>3:50</td>
-                          <td>Tuesday</td>
-                        </tr>
-                        <tr>
-                          <td>Dr. Su Mon Thu</td>
-                          <td>5BE</td>
-                          <td>ACN II</td>
-                          <td>8:30</td>
-                          <td>10:35</td>
-                          <td>Wednesday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Htet Htet Aung</td>
-                          <td>5BE</td>
-                          <td>English</td>
-                          <td>10:40</td>
-                          <td>11:40</td>
-                          <td>Wednesday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Htet Htet Aung</td>
-                          <td>5BE</td>
-                          <td>English</td>
-                          <td>12:40</td>
-                          <td>1:40</td>
-                          <td>Wednesday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Myint Myint Khing</td>
-                          <td>5BE</td>
-                          <td>ES</td>
-                          <td>1:45</td>
-                          <td>3:40</td>
-                          <td>Wednesday</td>
-                        </tr>
-                        <tr>
-                          <td>Dr.Su Mon Thu</td>
-                          <td>5BE</td>
-                          <td>ACN II</td>
-                          <td>8:30</td>
-                          <td>9:30</td>
-                          <td>Thursday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw San Lei Lei Win/td>
-                          <td>5BE</td>
-                          <td>DIP</td>
-                          <td>9:35</td>
-                          <td>11:40</td>
-                          <td>Thursday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Zo Ngaight Kyin</td>
-                          <td>5BE</td>
-                          <td>DSP</td>
-                          <td>12:40</td>
-                          <td>1:40</td>
-                          <td>Thursday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Htet Htet Aung</td>
-                          <td>5BE</td>
-                          <td>English</td>
-                          <td>1:45</td>
-                          <td>3:50</td>
-                          <td>Thursday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Myat Thidar Soe</td>
-                          <td>5BE</td>
-                          <td>CC</td>
-                          <td>8:30</td>
-                          <td>10:35</td>
-                          <td>Friday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw May Thae Cho Zin</td>
-                          <td>5BE</td>
-                          <td>COD</td>
-                          <td>10:40</td>
-                          <td>11:40</td>
-                          <td>Friday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw San Lei Lei Win</td>
-                          <td>5BE</td>
-                          <td>DIP</td>
-                          <td>12:40</td>
-                          <td>1:40</td>
-                          <td>Friday</td>
-                        </tr>
-                        <tr>
-                          <td>Daw Zo Ngaight Kyin</td>
-                          <td>5BE</td>
-                          <td>DSP</td>
-                          <td>1:45</td>
-                          <td>3:50</td>
-                          <td>Friday</td>
-                        </tr>
+                        <% for (var i=0; i < timetable.length; i++){ %>
+                          <tr onclick="go()">
+                            <td><%= i+1 %></td>
+                            <td><span id="dept<%=i%>"></span></td>
+                            <a href="/schedule/viewtimetable/<%=timetable[i].tb_id%>"><td><%=timetable[i].name%></td></a>
+                            <td><%=timetable[i].subj_name%></td>
+                            <td><%=timetable[i].class%></td>
+                            <td><%=timetable[i].start_time%></td>
+                            <td><%=timetable[i].end_time%></td>
+                            <td><span id="date<%=i%>"></span></td>
+                          </tr>
+                          <script src="../vendors/jquery/dist/jquery.min.js"></script>
+
+                          <script type="text/javascript">
+                            function go() {
+                            location.href =  "/schedule/viewtimetable/<%=timetable[i].tb_id%>"
+                            }
+
+                            switch ('<%=timetable[i].dept_id%>') {
+                                case '1':
+                                  $('#dept<%=i%>').html('IT');
+                                break;
+                                case '2':
+                                  $('#dept<%=i%>').html('Civil');
+                                break;
+                                case '3':
+                                  $('#dept<%=i%>').html('EC');
+                                break;
+                                case '4':
+                                  $('#dept<%=i%>').html('EP');
+                                break;
+                                case '5':
+                                  $('#dept<%=i%>').html('MP');
+                                break;
+                                case '6':
+                                  $('#dept<%=i%>').html('MC');
+                                break;
+                              default:
+                               $('#dept<%=i%>').html('Not selected data!');
+                          }
+
+                          switch ('<%=timetable[i].date_id%>') {
+                              case '1':
+                                $('#date<%=i%>').html('Monday');
+                              break;
+                              case '2':
+                                $('#date<%=i%>').html('Tuesday');
+                              break;
+                              case '3':
+                                $('#date<%=i%>').html('Wednesday');
+                              break;
+                              case '4':
+                                $('#date<%=i%>').html('Thursday');
+                              break;
+                              case '5':
+                                $('#date<%=i%>').html('Friday');
+                              break;
+                              default:
+                               $('#date<%=i%>').html('Not selected date!');
+                             }
+                          </script>
+                       <%  } %>
                       </tbody>
                     </table>
                   </div>
+                  <a href="/schedule/drawtimetable">Draw Timetable</a>
                 </div>
               </div>
 
@@ -275,4 +195,14 @@
     <script src="../build/js/custom.min.js"></script>
 
   </body>
+
+  <script type="text/javascript">
+
+
+
+
+  console.log($('#date').html());
+
+
+  </script>
 </html>

@@ -7,6 +7,26 @@
 
   </head>
 
+  <style media="screen">
+    #teacher{
+      color: black;
+      border: 1px,solid,red;
+      background-color:#ccf2ff;
+      border-radius: 15px;
+      width: 1025px;
+      height: 450px;
+      padding-left: 50px;
+      padding-top: 50px;
+      margin-left: 10px;
+      margin-top: 20px;
+      padding-left: 350px;
+    }
+    h1{
+      color: black;
+      margin-top: 10px;
+    }
+  </style>
+
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -41,21 +61,23 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <h1>Teacher View</h1>
             <div class="col-md-8 col-sm-8 col-xs-16 profile_details">
             <div class="col-sm-12">
-              <div class="left col-xs-7">
+              <div class="left col-xs-7" id="teacher">
+                <h1>Teacher View</h1>
+                <br>
                 <form  name="frm" action="/admin/remove" method="post">
                   <h2><input type="hidden" name="tid" value="<%= teacher.tid %>"></h2>
-                  <h4><i class="fa fa-user"></i>  Name: <%= teacher.name %> </h4>
-                  <h4><i class="fa fa-envelope"></i> Email: <%= teacher.email %></h4>
-                  <h4><i class="fa fa-group"></i>  Gender: <%= teacher.gender %></h4>
-                  <h4><i class="fa fa-institution"></i>  Department: <%= teacher.dept_name %></h4>
-                  <h4><i class="fa fa-phone"></i>Phone Number: <%= teacher.ph_number %></h4>
-                  <h4><i class="fa fa-calendar"></i>   Updated: <%= teacher.updated %></h4>
-                  <a href="/admin/teacherlist"><strong>Go to list</strong></a>
-                  <a href="/admin/tmodify/<%=teacher.tid%>"><strong>Modify</strong></a>
-                  <a href="javascript:del()"><strong>Remove</strong></a>
+                  <h4><i class="fa fa-user"></i>  &nbsp&nbsp Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= teacher.name %> </h4>
+                  <h4><i class="fa fa-envelope"></i>  &nbsp&nbsp Email: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= teacher.email %></h4>
+                  <h4><i class="fa fa-group"></i>   &nbsp&nbsp Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= teacher.gender %></h4>
+                  <h4><i class="fa fa-institution"></i>  &nbsp&nbsp Department:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= teacher.dept_name %></h4>
+                  <h4><i class="fa fa-phone"></i> &nbsp&nbsp&nbsp Phone Number: &nbsp&nbsp&nbsp&nbsp <%= teacher.ph_number %></h4>
+                  <h4><i class="fa fa-calendar"></i>  &nbsp&nbsp  Updated:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= teacher.updated %></h4>
+                  <br><br>
+                  <a href="/admin/teacherlist"><strong><button type="button" class="btn btn-primary">Go to list</button></strong></a>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp<a href="/admin/tmodify/<%=teacher.tid%>"><strong><button type="button" class="btn btn-warning">Modify</button></strong></a>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="javascript:del()"><strong> <button type="button" class="btn btn-danger">Delete</button></strong></a>
                 </form>
               </div>
             </div>

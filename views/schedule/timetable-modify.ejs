@@ -62,7 +62,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dept">Department <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="dept" id="dept">
+                          <select class="optional form-control col-md-7 col-xs-12"  value="<%=timetable.dept_id%>" name="dept" id="dept">
                           </select>
                         </div>
                       </div>
@@ -70,8 +70,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tname">Teacher Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="tname" id="tname">
-                            <option value="">Select department first...</option>
+                          <select class="optional form-control col-md-7 col-xs-12" value="<%=timetable.name%>" name="tname" id="tname">
                           </select>
                         </div>
                       </div>
@@ -79,8 +78,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="subj">Subject <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="subj" id="subj">
-                            <option value="">Select teacher first...</option>
+                          <select class="optional form-control col-md-7 col-xs-12" value="<%=timetable.subj_name%>" name="subj" id="subj">
                           </select>
                         </div>
                       </div>
@@ -88,8 +86,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="class">Class <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="class">
-                            <option value="">Select Class</option>
+                          <select class="optional form-control col-md-7 col-xs-12" id="class" name="class">
                             <option value="1BE">1BE</option>
                             <option value="2BE">2BE</option>
                             <option value="3BE">3BE</option>
@@ -104,26 +101,25 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start">Start Time<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="start" type="time" name="stime" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                          <input id="start" type="time" name="stime" value="<%=timetable.start_time%>"data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label for="password" class="control-label col-md-3">End Time<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="end" type="time" name="etime" data-validate-length="5,20" class="form-control col-md-7 col-xs-12" required="required">
+                          <input id="end" type="time" name="etime" value="<%=timetable.end_time%>" data-validate-length="5,20" class="form-control col-md-7 col-xs-12" required="required">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Date <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="date">
-                            <option value="">Date</option>
-                            <option value="1">Monday</option>
-                            <option value="2">Tuesday</option>
-                            <option value="3">Wednesday</option>
-                            <option value="4">Thursday</option>
-                            <option value="5">Friday</option>
+                          <select class="optional form-control col-md-7 col-xs-12" id="date" name="date">
+                            <option value="Mon">Monday</option>
+                            <option value="Tue">Tuesday</option>
+                            <option value="Wed">Wednesday</option>
+                            <option value="Thu">Thursday</option>
+                            <option value="Fri">Friday</option>
                           </select>
                         </div>
                       </div>
@@ -173,45 +169,33 @@
           $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
       });
       var tb = [];
-      $("#dept").append(new Option("Select dept",  ""));
-      <%for(var dept of depts){%>
-        $("#dept").append(new Option("<%=dept.dept_name%>",  "<%=dept.dept_id%>"));
-      <%}%>
+
       <%for(var i in data){%>
-        tb.push({dept:"<%=data[i].dept_id%>",tname:"<%=data[i].name%>",subj:"<%=data[i].subj_name%>"});
+        tb.push({"dept":"<%=data[i].dept_id%>","tname":"<%=data[i].name%>","subj":"<%=data[i].subj_name%>"});
+
       <%}%>
       // var tb = <%- data %>;
-      console.log(typeof tb);
-        //addOptions('dept', tb);
+      console.log('/////',tb);
+        addOptions('dept', tb);
         $("#dept").on('change', function(){
           var tb2 = $.grep(tb, function(n,i){
             return n.dept == $("#dept").val();
           });
-          addOptions('tname',tb2); // add teachers
-          clearOptions('subj', 'Select teacher first...');
-        });
-
-        $("#tname").on('change', function(){
-          var tb2 = $.grep(tb, function(n,i){
-            return n.dept == $("#dept").val() && n.tname == $("#tname").val();
-          });
-          addOptions('subj',tb2); //  add subjects
+          addOptions('tname',tb2);
+          addOptions('subj',tb2);
         });
 
         function addOptions(id,arr){
-          clearOptions(id);
+          $("#"+id).children().remove();
           for(var idx in arr){
             if(idx == 0) $("#"+id).append(new Option('Select '+((id=="dept")? "Department":((id=="tname")? "Teacher": "Subject")), ''));
             if(idx == 0 || arr[idx][id] != arr[idx-1][id]){
-              $("#"+id).append(new Option((id=='dept')? change(arr[idx][id]):arr[idx][id], arr[idx][id]));
+              $("#"+id).append(new Option(arr[idx][id], arr[idx][id]));
             }
           }
         }
-        function clearOptions(id, msg){
-          $("#"+id).children().remove();
-          if(msg){
-            $("#"+id).append(new Option(msg,""));
-          }
-        }
+
+        $('#class').val("<%=timetable.class%>").change();
+        $('#date').val("<%=timetable.date_id%>").change();
   </script>
 </html>

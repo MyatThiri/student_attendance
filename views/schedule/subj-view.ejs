@@ -7,6 +7,26 @@
 
   </head>
 
+  <style media="screen">
+    #subj{
+      color: black;
+      border: 1px,solid,red;
+      background-color:#ccf2ff;
+      border-radius: 15px;
+      width: 1025px;
+      height: 450px;
+      padding-left: 50px;
+      padding-top: 50px;
+      margin-left: 10px;
+      margin-top: 20px;
+      padding-left: 350px;
+    }
+    h1{
+      color: black;
+      margin-top: 10px;
+    }
+  </style>
+
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -41,21 +61,23 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <!-- <div class=""> -->
-          <h1>Subject View</h1>
-            &nbsp
+
             <div class="col-md-18 col-sm-18 col-xs-36 profile_details">
             <!-- <div class="well profile_view"> -->
               <div class="col-sm-12">
-                <div class="left col-xs-7">
+                <div class="left col-xs-7" id="subj">
+                  <h1>Subject View</h1>
+                  <br>
                   <form action="/schedule/remove" name="frm" method="post">
                       <h2><input type="hidden" name="id", value="<%=subj.subj_id%>"</h2>
-                      <h4><i class="fa fa-book"></i>  Subject Name: <%= subj.subj_name %> </h4>
-                      <h4><i class="fa fa-edit"></i> Code: <%= subj.code %></h4>
-                      <h4><i class="fa fa-institution"></i>  Department: <%= subj.dept_name %></h4>
-                      <h4><i class="fa fa-calendar"></i>   Updated: <%= subj.updated %></h4>
-                      <a href="/schedule/subjlist"><strong>Go to list</strong></a>
-                      <a href="/schedule/subjmodify/<%=subj.subj_id%>"><strong>Modify</strong></a>
-                      <a href="javascript:del()"><strong>Remove</strong></a>
+                      <h4><i class="fa fa-book"></i> &nbsp &nbsp Subject Name: &nbsp&nbsp&nbsp&nbsp <%= subj.subj_name %> </h4>
+                      <h4><i class="fa fa-edit"></i> &nbsp&nbsp Code:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= subj.code %></h4>
+                      <h4><i class="fa fa-institution"></i> &nbsp&nbsp Department:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= subj.dept_name %></h4>
+                      <h4><i class="fa fa-calendar"></i> &nbsp &nbsp Updated:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <%= subj.updated %></h4>
+                      <br><br>
+                      <a href="/schedule/subjlist"><strong><button type="button" class="btn btn-primary">Go to list</button></strong></a>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp<a href="/schedule/subjmodify/<%=subj.subj_id%>"><strong><button type="button" class="btn btn-warning">Modify</button></strong></a>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="javascript:del()"><strong> <button type="button" class="btn btn-danger">Delete</button></strong></a>
                   </form>
               </div>
               </div>
