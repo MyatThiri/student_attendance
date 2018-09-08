@@ -21,6 +21,9 @@
      color: black;
      background-color:#ffdb4d;
     }
+    #body {
+      color: black;
+    }
   </style>
 
   <body class="nav-md">
@@ -85,7 +88,7 @@
                       </thead>
                       <tbody>
                         <% for (var i=0; i < timetable.length; i++){ %>
-                          <tr onclick="go()">
+                          <tr onclick="go()" id="body">
                             <td><%= i+1 %></td>
                             <td><span id="dept<%=i%>"></span></td>
                             <a href="/schedule/viewtimetable/<%=timetable[i].tb_id%>"><td><%=timetable[i].name%></td></a>

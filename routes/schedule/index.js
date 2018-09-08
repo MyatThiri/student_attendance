@@ -44,14 +44,18 @@ router.get('/timetablelist',function(req,res,next){
 });
 
 router.get('/timetablemodify/:id', function(req,res,next){
-  Teacher.joinSubj({},function(err2,data){
-    if (err2) throw err2;
-  Timetable.findById(req.params.id,function(err,timetable){
-    if (err) throw err;
-    if(timetable.length == 0) next (new Error('Timetable data not found!'));
-    res.render('schedule/timetable-modify', {title: 'Timetable View', timetable: timetable[0], data: data});
-  });
-  });
+  Dept.find([],function(err,depts){
+    if(err) next (err);
+    Teacher.joinSubj({},function(err2,teachers){
+      if (err2) next (err2);
+      Timetable.findById(req.params.id,function(err3,timetable){
+        if (err3) next (err3);
+        if(timetable.length == 0) next (new Error('Timetable data not found!'));
+        res.render('schedule/timetable-modify', {title: 'Timetable View', timetable: timetable[0], teachers: teachers, depts:depts});
+      });
+    });
+  })
+
 });
 
 router.post('/timetablemodify', function(req,res,next){

@@ -1,5 +1,5 @@
 var db = require('../dbcon');
-var bcrypt = require('bcrypt-nodejs');
+
 
 var Timetable = {
   add: function(params,callback){
