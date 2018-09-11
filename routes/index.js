@@ -10,9 +10,10 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET home page. */
-router.get('/home', function(req, res, next) {
-  res.render('home', { title: 'Home Page' });
-});
+// router.get('/home', function(req, res, next) {
+//   console.log('call');
+//   res.render('home', { title: 'Home Page' });
+// });
 
 /* GET signin page. */
 router.get('/signup', function(req,res,next){
@@ -61,11 +62,13 @@ router.get('/signin', function(req, res, next){
      if(user.length == 0 || !User.compare(req.body.password,user[0].password)){
        req.flash('warn', 'Email not exists or password not matched!!');
        res.redirect('/signin');
+       console.log('not match!!');
      }else{
-       req.session.users = { uid:user[0].uid,uname:user[0].name, email:user[0].email }
+       console.log('Match!!');
+       req.session.user = { uid:user[0].uid,uname:user[0].name, email:user[0].email }
        if(req.body.rememberme) res.cookie('email',user[0].email, {maxAge:864008*7});
        else res.cookie('email', '', {maxAge: 0});
-       res.redirect('/home');
+       res.redirect('/admin/home');
      }
      });
    });

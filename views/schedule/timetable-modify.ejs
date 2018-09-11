@@ -79,7 +79,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="subj">Subject <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="subj" id="subj" value="<%=timetable.subj_name%>">
+                          <select class="optional form-control col-md-7 col-xs-12" name="subj" id="subj" >
                             <option value="">Select teacher first...</option>
                           </select>
                         </div>
@@ -88,7 +88,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="class">Class <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="class" value="<%=timetable.class%>">
+                          <select class="optional form-control col-md-7 col-xs-12" id="class" name="class" >
                             <option value="1BE">1BE</option>
                             <option value="2BE">2BE</option>
                             <option value="3BE">3BE</option>
@@ -103,7 +103,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start">Start Time<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="start" type="time" value="<%-timetable.start_time%>" name="stime" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                          <input id="start" type="time" value="<%=timetable.start_time%>" name="stime" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
@@ -116,7 +116,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Date <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="optional form-control col-md-7 col-xs-12" name="date" value ="<%=timetable.date_id%>">
+                          <select class="optional form-control col-md-7 col-xs-12" id="date" name="date">
                             <option value="1">Monday</option>
                             <option value="2">Tuesday</option>
                             <option value="3">Wednesday</option>
@@ -189,14 +189,16 @@
         addOptions('tname',tb2); // add teachers
         clearOptions('subj', 'Select teacher first...');
       }
+      function changeTeacher(){
+        var tb2 = $.grep(tb, function(n,i){
+          return n.dept == $("#dept").val() && n.tname == $("#tname").val();
+        });
+          addOptions('subj',tb2); //  add subjects
+      }
+
         $("#dept").on('change', changeDept);
 
-        $("#tname").on('change', function(){
-          var tb2 = $.grep(tb, function(n,i){
-            return n.dept == $("#dept").val() && n.tname == $("#tname").val();
-          });
-          addOptions('subj',tb2); //  add subjects
-        });
+        $("#tname").on('change', changeTeacher);
 
         function addOptions(id,arr){
           clearOptions(id);
@@ -214,10 +216,13 @@
           }
         }
 
-        // $('#class').val("<%=timetable.class%>").change();
-        // $('#date').val("<%=timetable.date_id%>").change();
+        $('#class').val("<%=timetable.class%>").change();
+        $('#date').val("<%=timetable.date_id%>").change();
+
         $dept.val('<%=timetable.dept_id%>');
         changeDept();
         $("#tname").val('<%=timetable.name%>');
+        changeTeacher();
+        $("#subj").val('<%=timetable.subj_name%>');
   </script>
 </html>

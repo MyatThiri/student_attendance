@@ -22,7 +22,7 @@
      background-color:#ffdb4d;
     }
   </style>
-  
+
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -82,7 +82,7 @@
                       </thead>
                       <tbody>
                         <% for (var i=0; i< subj.length; i++){ %>
-                          <tr>
+                          <tr onclick="go()" id="body">
                             <td><%= i+1 %></td>
                             <td><a href="/schedule/subjview/<%=subj[i].subj_id%>"><%=subj[i].subj_name%></a></td>
                             <td><%=subj[i].code%></td>
@@ -90,6 +90,11 @@
                             <td><%=subj[i].updated%></td>
                           </tr>
                         <% } %>
+                        <script type="text/javascript">
+                          function go() {
+                            location.href = "/schedules/subjview/<%=subj[i].subj_id%>"
+                          }
+                        </script>
                       </tbody>
                     </table>
                   </div>
@@ -110,6 +115,7 @@
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->

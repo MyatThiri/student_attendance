@@ -4,9 +4,12 @@ var Teacher = require('../../models/Teacher');
 var Student = require('../../models/Student');
 
 var users = require('./users');
-// router.get('/plain', function(req,res,next){
-//     res.render('plain_page',{title:'title'})
-// });
+
+
+router.get('/home', function(req, res, next) {
+  console.log('call');
+  res.render('home', { title: 'Home Page' });
+});
 
 router.get('/addteacher', function(req,res,next){
     res.render('admin/add-teacher')

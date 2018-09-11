@@ -40,6 +40,15 @@ app.use(flash());// after cookie, session
  });
 
 app.use('/', indexRouter);
+app.use(function(req, res, next){
+   if(req.session.user){
+     next();
+   }else{
+     req.flash('warning', 'authorization failed! Please login');
+     req.flash('forward', req.path);
+     res.redirect('/signin');
+   }
+ });
 app.use('/admin',admin);
 app.use('/schedule',schedule);
 

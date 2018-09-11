@@ -36,9 +36,9 @@
               <input type="email" id="email" class="form-control" name="email" value="" placeholder="Email" required><p>
               <input type="password" class="form-control" name="password" value="" placeholder="Password" required><p>
               <input type="password" class="form-control" name="repassword" value="" placeholder="Confirm Password" required><p>
-              <input type="button" class="btn btn-default submit" id="save" name="button" value="SignUp">
+              <input type="text" name="key" id="sec"  class="form-control" value="" placeholder="Security Key" required> <p>
+              <input type="button" class="btn btn-default submit" id="save" name="button" value="SignUp"disabled>
               <div class="clearfix"></div>
-
               <div class="separator">
                 <p class="change_link">Already a member ?
                   <a href="/signin" class="to_register"> Signin </a>
@@ -57,6 +57,13 @@
   <script src="/js/jquery.min.js" charset="utf-8"></script>
   <script src="/js/jquery.validate.js" charset="utf-8"></script>
   <script type="text/javascript">
+    var status = false;
+    $('#sec').keyup(function (e) {
+      if($('#sec').val()== "MT001"){
+        $('#save').removeAttr('disabled');
+      }
+      console.log($('#sec').val());
+    })
     $.validator.addMethod("pwcheck", function(value){
       return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
                 && /[a-z]/.test(value) // has a lowercase letter
