@@ -79,7 +79,7 @@ router.get('/studentadd', function(req,res,next){
 });
 
 router.post ('/studentadd', function(req,res,next){
-  var params = [req.body.name,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.password];
+  var params = [req.body.name,req.body.roll,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.password];
   Student.add(params, function(err,student){
     if(err) next (err);
   //TODO add messages
@@ -115,7 +115,7 @@ router.get('/smodify/:sid', function(req,res,next){
 });
 
 router.post('/smodify', function(req,res,next){
-  var params = [req.body.name,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.sid];
+  var params = [req.body.name,req.body.roll,req.body.email,req.body.gender,req.body.number,req.body.dept,req.body.class,req.body.sid];
   Student.findById(req.body.sid,function(err,student){
     if (err) throw err;
     if(student.length == 0) next (new Error('Student data not found!'));

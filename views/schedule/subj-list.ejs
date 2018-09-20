@@ -82,7 +82,7 @@
                       </thead>
                       <tbody>
                         <% for (var i=0; i< subj.length; i++){ %>
-                          <tr onclick="go()" id="body">
+                          <tr>
                             <td><%= i+1 %></td>
                             <td><a href="/schedule/subjview/<%=subj[i].subj_id%>"><%=subj[i].subj_name%></a></td>
                             <td><%=subj[i].code%></td>
@@ -90,11 +90,6 @@
                             <td><%=subj[i].updated%></td>
                           </tr>
                         <% } %>
-                        <script type="text/javascript">
-                          function go() {
-                            location.href = "/schedules/subjview/<%=subj[i].subj_id%>"
-                          }
-                        </script>
                       </tbody>
                     </table>
                   </div>

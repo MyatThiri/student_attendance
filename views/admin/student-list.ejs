@@ -22,7 +22,7 @@
      background-color:#ffdb4d;
     }
   </style>
-  
+
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -75,6 +75,7 @@
                         <tr id="head">
                           <th>No</th>
                           <th>Name</th>
+                          <th>Rpll No.</th>
                           <th>Email</th>
                           <th>Gender</th>
                           <th>Phone Number</th>
@@ -88,6 +89,7 @@
                           <tr>
                             <td><%= i+1 %></td>
                             <td><a href="/admin/sview/<%=student[i].sid%>"><%=student[i].name%></a></td>
+                            <td><%=student[i].roll_no%></td>
                             <td><%=student[i].email%></td>
                             <td><%=student[i].gender%></td>
                             <td><%=student[i].ph_number%></td>

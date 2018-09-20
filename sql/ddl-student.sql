@@ -1,6 +1,7 @@
 CREATE TABLE `db_sams`.`student` (
   `sid` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
+  `roll_no` VARCHAR (45) NOT NULL,
   `email` VARCHAR(128) NOT NULL,
   `gender` VARCHAR(10) NOT NULL,
   `ph_number` INT NOT NULL,
