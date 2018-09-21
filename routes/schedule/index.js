@@ -3,6 +3,7 @@ var router = express.Router();
 var Subj = require('../../models/Subj');
 var Dept = require('../../models/Dept');
 var Teacher = require('../../models/Teacher');
+var Student = require('../../models/Student');
 var Timetable = require('../../models/Timetable');
 
 router.get('/drawtimetable', function(req,res,next){
@@ -20,6 +21,7 @@ router.post('/drawtimetable', function(req,res,next){
   var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,Number(req.body.date)];
   Timetable.add(params, function(err,timetable){
     if (err) next (err);
+    console.log('======>',timetable[0]);
     req.flash('warn', 'Insert Success');
     res.redirect ('/schedule/viewtimetable/'+timetable.insertId);
   });
@@ -84,12 +86,28 @@ router.get('/addsubj', function(req,res,next){
 });
 
 router.post ('/addsubj', function(req,res,next){
-  var params = [req.body.name,req.body.code,req.body.dept];
+  var params = [req.body.name,req.body.code,req.body.class,req.body.dept];
   Subj.add(params, function(err,subj){
     if (err) next (err);
-    req.flash('warn', 'Insert Success');
-    console.log(subj);
-    res.redirect ('/schedule/subjview/'+subj.insertId);
+    console.log('========>',subj);
+    Subj.create(req.body.code, function (err2,dbName) {
+      console.log('calling');
+      if(err2) next (err2);
+      var con = [req.body.dept,req.body.class];
+      var list = [];
+      Student.find(con,function (err3,stu) {
+        if(err3) next (err3);
+        for(var i in stu){
+          list.push([stu[i].sid,stu[i].name]);
+        }
+        Subj.insert(list,req.body.code,function (err4,upt) {
+          if(err4) next (err4);
+          console.log('///a//a//a',upt);
+          req.flash('warn', 'Insert Success');
+          res.redirect ('/schedule/subjview/'+subj.insertId);
+        });
+      });
+    });
   });
 });
 
@@ -104,7 +122,7 @@ router.get('/subjview/:id', function(req,res,next){
 });
 
 router.get('/subjlist', function(req,res,next){
-  var params = [req.body.id,req.body.name,req.body.code,req.body.dept];
+  var params = [req.body.id,req.body.name,req.body.code,req.body.class,req.body.dept];
   Subj.find({params}, function(err,subj){
     console.log(subj);
     if (err) next (err);
@@ -121,7 +139,7 @@ router.get('/subjmodify/:subj_id', function(req,res,next){
 });
 
 router.post('/subjmodify', function(req,res,next){
-  var params = [req.body.name,req.body.code,req.body.dept,req.body.id];
+  var params = [req.body.name,req.body.code,req.body.class,req.body.dept,req.body.id];
   Subj.findById(req.body.id,function(err,subj){
     console.log('call first');
     if (err) throw err;

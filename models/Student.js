@@ -20,7 +20,10 @@ var Student = {
 
   find: function(params, callback){
     // var p = [];
-    var sql = "SELECT sid, s.name,s.roll_no, s.email, s.gender,s.ph_number,s.dept_id,s.class, DATE_FORMAT(s.updated, '%d/%m/%Y %H:%i') AS updated, d.dept_name FROM student AS s JOIN dept AS d USING(dept_id)";
+    var sql = "SELECT sid, s.name,s.roll_no, s.email, s.gender,s.ph_number,s.dept_id,s.class, DATE_FORMAT(s.updated, '%d/%m/%Y %H:%i') AS updated, d.dept_name FROM student AS s JOIN dept AS d USING(dept_id) ";
+    if(params !=''){
+      sql += "WHERE s.dept_id = "+params[0]+" AND s.class = '"+params[1]+"';"
+    }
     return db.query(sql, params, callback);
   },
 
