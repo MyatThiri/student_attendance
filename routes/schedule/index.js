@@ -80,7 +80,7 @@ router.post('/creatDB',function (req,res,next) {
         Subj.insertDB(all,dbName.toLowerCase(),function (err4,upt) {
           if(err4) next (err4);
           req.flash('warn', 'Insert Success');
-          res.send(majors);
+          res.send('Success');
         });
       });
 

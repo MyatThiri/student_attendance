@@ -25,7 +25,44 @@
             <br />
 
             <!-- sidebar menu -->
-            <% include partial/sidebar %>
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a href="../home"><i class="fa fa-home"></i> Home</a>
+                  </li>
+                  <li><a><i class="fa fa-user"></i> Teacher <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/addteacher">Add Teacher</a></li>
+                      <li><a href="/admin/teacherlist">Teacher list</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-users"></i> Student <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/studentadd">Add Student</a></li>
+                      <li><a href="/admin/studentlist">Student list</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-table"></i> Timetable <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/schedule/addsubj">Add Subject</a></li>
+                      <li><a href="/schedule/subjlist">Subject List</a></li>
+                      <li><a href="/schedule/drawtimetable">Draw Timetable</a></li>
+                      <li><a href="/schedule/timetablelist">Timetable List</a></li>
+                    </ul>
+                  </li>
+                  <!-- <li><a><i class="fa fa-bar-chart-o"></i> Attendance <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/viewattendance">View Attendance</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-envelope-o"></i>Email</a>
+                  </li> -->
+                  <li><a href="/sigin"><i class="fa fa-sign-in"></i>Login</a>
+                  </li>
+                </ul>
+              </div>
+            
+            </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
