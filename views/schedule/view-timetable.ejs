@@ -74,7 +74,7 @@
                       <h4><i class="fa fa-user"></i> &nbsp&nbsp Teacher Name:&nbsp&nbsp&nbsp&nbsp <%= timetable.name %></h4>
                       <h4><i class="fa fa-book"></i>  &nbsp&nbsp Subject:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= timetable.subj_name %></h4>
                       <h4><i class="fa fa-columns"></i>  &nbsp&nbsp Class:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= timetable.class %></h4>
-                      <h4><i class="fa fa-dashboard"></i>  &nbsp&nbsp Time: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.time %></h4>
+                      <h4><i class="fa fa-dashboard"></i>  &nbsp&nbsp Time: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="time"><%= timetable.time %></span></h4>
                       <h4><i class="fa fa-calendar-o"></i>  &nbsp&nbsp Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="date"><%= timetable.date_id %></span></h4>
                       <h4><i class="fa fa-calendar"></i>  &nbsp&nbsp Updated: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.updated %></h4>
                       <br>
@@ -152,5 +152,28 @@
         default:
          $('#date').html('Not selected date!');
        }
+
+       switch ('<%=timetable.time%>') {
+           case '1':
+             $('#time').html('8:30AM-9:30AM');
+           break;
+           case '2':
+             $('#time').html('9:35AM-10:35AM');
+           break;
+           case '3':
+             $('#time').html('10:40AM-11:40AM');
+           break;
+           case '4':
+             $('#time').html('12:40PM-1:40PM');
+           break;
+           case '5':
+             $('#time').html('1:45PM-2:45PM');
+           break;
+           case '6':
+             $('#time').html('2:50PM-3:50PM');
+           break;
+           default:
+            $('#time').html('Not selected time!');
+          }
   </script>
 </html>

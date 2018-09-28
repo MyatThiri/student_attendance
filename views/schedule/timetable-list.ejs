@@ -87,10 +87,10 @@
                       </thead>
                       <tbody>
                         <% for (var i=0; i < timetable.length; i++){ %>
-                          <tr onclick="go()" id="body">
+                          <tr onclick="go(<%=timetable[i].tb_id%>);" id="body">
                             <td><%= i+1 %></td>
                             <td><span id="dept<%=i%>"></span></td>
-                            <a href="/schedule/viewtimetable/<%=timetable[i].tb_id%>"><td><%=timetable[i].name%></td></a>
+                            <td><%=timetable[i].name%></td>
                             <td><%=timetable[i].subj_name%></td>
                             <td><%=timetable[i].class%></td>
                             <td><span id="time<%=i%>"></span></td>
@@ -99,8 +99,8 @@
                           <script src="../vendors/jquery/dist/jquery.min.js"></script>
 
                           <script type="text/javascript">
-                            function go() {
-                            location.href =  "/schedule/viewtimetable/<%=timetable[i].tb_id%>"
+                            function go(id) {
+                            location.href =  "/schedule/viewtimetable/"+id;
                             }
 
                             switch ('<%=timetable[i].dept_id%>') {
@@ -145,6 +145,7 @@
                               default:
                                $('#date<%=i%>').html('Not selected date!');
                              }
+
                              switch ('<%=timetable[i].time%>') {
                                  case '1':
                                    $('#time<%=i%>').html('8:30AM-9:30AM');
