@@ -93,7 +93,7 @@
                             <a href="/schedule/viewtimetable/<%=timetable[i].tb_id%>"><td><%=timetable[i].name%></td></a>
                             <td><%=timetable[i].subj_name%></td>
                             <td><%=timetable[i].class%></td>
-                            <td><%=timetable[i].time%></td>
+                            <td><span id="time<%=i%>"></span></td>
                             <td><span id="date<%=i%>"></span></td>
                           </tr>
                           <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -145,6 +145,28 @@
                               default:
                                $('#date<%=i%>').html('Not selected date!');
                              }
+                             switch ('<%=timetable[i].time%>') {
+                                 case '1':
+                                   $('#time<%=i%>').html('8:30AM-9:30AM');
+                                 break;
+                                 case '2':
+                                   $('#time<%=i%>').html('9:35AM-10:35AM');
+                                 break;
+                                 case '3':
+                                   $('#time<%=i%>').html('10:40AM-11:40AM');
+                                 break;
+                                 case '4':
+                                   $('#time<%=i%>').html('12:40PM-1:40PM');
+                                 break;
+                                 case '5':
+                                   $('#time<%=i%>').html('1:45PM-2:45PM');
+                                 break;
+                                 case '6':
+                                   $('#time<%=i%>').html('2:50PM-3:50PM');
+                                 break;
+                                 default:
+                                  $('#time<%=i%>').html('Not selected time!');
+                                }
                           </script>
                        <%  } %>
                       </tbody>

@@ -63,39 +63,24 @@
             <table>
                 <tr>
                     <td>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Teacher Name:
-                        </label>
-                        <div class="col-md-9 col-sm-9 col-xs-18">
-                            <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
-                        </div>
-                    </td>
-                    <td>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Class:
-                        </label>
-                        <div class="col-md-9 col-sm-9 col-xs-18">
-                            <input id="class" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="class"  required="required" type="text">
-                        </div>
-                    </td>
-                    <td>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">From Date:
-                        </label>
-                        <div class="col-md-9 col-sm-9 col-xs-18">
-                            <input id="date1" class="form-control col-md-7 col-xs-12"  name="date1"  required="required" type="date">
-                        </div>
-                    </td>
-                    <td>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">To Date:
-                        </label>
-                        <div class="col-md-9 col-sm-9 col-xs-18">
-                            <input id="date" class="form-control col-md-7 col-xs-12" name="date2" required="required" type="date">
-                        </div>
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <select class="optional form-control col-md-7 col-xs-12" name="class">
+                          <option value="">Select Class</option>
+                          <option value="1BE">1BE</option>
+                          <option value="2BE">2BE</option>
+                          <option value="3BE">3BE</option>
+                          <option value="4BE">4BE</option>
+                          <option value="5BE">5BE</option>
+                          <option value="6BE">6BE</option>
+                        </select>
+                      </div>
                     </td>
                     <td>
                         <button type="button" class="btn btn-success">Search</button>
                     </td>
                 </tr>
             </table>
-
+            <br>
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_content">
@@ -104,47 +89,16 @@
                         <tr>
                           <th>Roll No.</th>
                           <th>Student Name</th>
-                          <th>Absence Time</th>
-                          <th>Present Time</th>
                           <th>Total Percentage</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>1</td>
-                          <td>S's Name1</td>
-                          <td>2</td>
-                          <td>5</td>
+                          <td>5BE-IT-1</td>
+                          <td>Mg Mein Htet Linn</td>
                           <td>93%</td>
                         </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>S's Name2</td>
-                          <td>2</td>
-                          <td>5</td>
-                          <td>93%</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>S's Name3</td>
-                          <td>2</td>
-                          <td>5</td>
-                          <td>93%</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>S's Name4</td>
-                          <td>2</td>
-                          <td>5</td>
-                          <td>93%</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>S's Name5</td>
-                          <td>2</td>
-                          <td>5</td>
-                          <td>93%</td>
-                        </tr>
+
                       </tbody>
                     </table>
                   </div>
