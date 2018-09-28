@@ -74,14 +74,13 @@
                       <h4><i class="fa fa-user"></i> &nbsp&nbsp Teacher Name:&nbsp&nbsp&nbsp&nbsp <%= timetable.name %></h4>
                       <h4><i class="fa fa-book"></i>  &nbsp&nbsp Subject:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= timetable.subj_name %></h4>
                       <h4><i class="fa fa-columns"></i>  &nbsp&nbsp Class:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= timetable.class %></h4>
-                      <h4><i class="fa fa-bell"></i>  &nbsp&nbsp Start Time: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.start_time %></h4>
-                      <h4><i class="fa fa-bell-slash"></i>  &nbsp&nbsp End Time: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.end_time %></h4>
+                      <h4><i class="fa fa-dashboard"></i>  &nbsp&nbsp Time: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.time %></h4>
                       <h4><i class="fa fa-calendar-o"></i>  &nbsp&nbsp Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="date"><%= timetable.date_id %></span></h4>
-                      <h4><i class="fa fa-calendar"></i>  &nbsp&nbsp Updated: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.updated %></h4>
+                      <h4><i class="fa fa-calendar"></i>  &nbsp&nbsp Updated: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= timetable.updated %></h4>
                       <br>
                       <a href="/schedule/timetablelist"><strong><button type="button" class="btn btn-primary">Go to list</button></strong></a>
                       &nbsp&nbsp&nbsp&nbsp&nbsp<a href="/schedule/timetablemodify/<%=timetable.tb_id%>"><strong><button type="button" class="btn btn-warning">Modify</button></strong></a>
-                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="javascript:del()"><strong><button type="button" class="btn btn-danger">Remove</button></strong></a>
+                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="javascript:del()"><strong><button type="button" class="btn btn-danger">Delete</button></strong></a>
                   </form>
               </div>
               </div>

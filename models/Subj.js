@@ -10,15 +10,29 @@ var Subj = {
     console.log(sql);
     return db.query(sql,[dbName],callback);
   },
+  createClass: function (dbName,majors,callback) {
+    var sql = 'CREATE TABLE '+dbName+' (id INT AUTO_INCREMENT PRIMARY KEY ,stu_id INT(11), stu_name VARCHAR(45),'+majors+' month INT(11))';
+    return db.query(sql,[dbName],callback);
+  },
   insert: function (update,name,callback) {
     console.log('lllllllllllll',update);
-    var sql = 'INSERT INTO '+ name +' (stu_id, stu_name) VALUES ?';
+    var sql = 'INSERT INTO '+ name +' (stu_id, stu_name, count, att_count) VALUES ?';
+    console.log(sql);
+    return db.query(sql,[update],callback);
+  },
+  insertDB: function (update,name,callback) {
+    console.log('lllllllllllll',update);
+    var sql = 'INSERT INTO '+ name +' (stu_id, stu_name,month) VALUES ?';
     console.log(sql);
     return db.query(sql,[update],callback);
   },
   findById: function(subj_id,callback){
     var sql = "SELECT s.subj_id, s.subj_name, s.code,s.class, s.dept_id, DATE_FORMAT(s.updated, '%d/%m/%Y %H:%i') AS updated, d.dept_name FROM subject AS s JOIN dept AS d USING(dept_id) WHERE s.subj_id = ?";
     return db.query (sql,[subj_id],callback);
+  },
+  findByClass: function(classN,callback){
+    var sql = "SELECT subj_name FROM subject WHERE class = ?";
+    return db.query (sql,[classN],callback);
   },
 
   find: function(params, callback){

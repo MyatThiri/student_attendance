@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <% include ../partial/head %>
+    <title>Gentelella Alela! | </title>
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-bell-o"></i> <span>SAM System</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <% include ../partial/menu_profile %>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <% include ../partial/sidebar %>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <% include ../partial/menu_footer %>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <% include ../partial/top_nav %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>ADD Subject</h3>
+              </div>
+
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><b>Subject Info</b></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <form action="/schedule/creatDB" name="frm" method="post" id="frm" class="form-horizontal form-label-left" novalidate>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="class">Class <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="optional form-control col-md-7 col-xs-12" name="class">
+                            <option value="">Select Class</option>
+                            <option value="1BE">1BE</option>
+                            <option value="2BE">2BE</option>
+                            <option value="3BE">3BE</option>
+                            <option value="4BE">4BE</option>
+                            <option value="5BE">5BE</option>
+                            <option value="6BE">6BE</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="major">Department <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="optional form-control col-md-7 col-xs-12" name="major">
+                            <option value="">All</option>
+                            <option value="IT">IT</option>
+                            <option value="Civil">Civil</option>
+                            <option value="EC">EC</option>
+                            <option value="EP">EP</option>
+                            <option value="MP">MP</option>
+                            <option value="MC">MC</option>
+                          </select>
+                        </div>
+                      </div>
+                    <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <% include ../partial/footer %>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <% include ../partial/script %>
+
+  </body>
+</html>

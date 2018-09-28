@@ -18,13 +18,76 @@ router.get('/drawtimetable', function(req,res,next){
 });
 
 router.post('/drawtimetable', function(req,res,next){
-  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,Number(req.body.date)];
+  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.time,Number(req.body.date)];
   Timetable.add(params, function(err,timetable){
     if (err) next (err);
     console.log('======>',timetable[0]);
     req.flash('warn', 'Insert Success');
     res.redirect ('/schedule/viewtimetable/'+timetable.insertId);
   });
+});
+router.get('/creatDB', function (req,res,next) {
+  res.render('schedule/add-db');
+});
+router.post('/creatDB',function (req,res,next) {
+  var dbName = req.body.class+req.body.major;
+  var majors ='';
+  var dept ;
+  switch (req.body.major) {
+    case 'IT':
+      dept = 1;
+      break;
+    case 'Civil':
+      dept = 2;
+      break;
+    case 'EC':
+      dept = 3;
+      break;
+    case 'EP':
+      dept = 4;
+      break;
+    case 'MP':
+      dept = 5;
+      break;
+    case 'MC':
+      dept = 6;
+      break;
+    default:
+      console.log('something was worng');
+  }
+  Subj.findByClass(req.body.class,function (err,rtn) {
+    if(err) next (err);
+    console.log(rtn);
+    for(var i in rtn){
+      majors += rtn[i].subj_name+'_count INT(11) NOT NULL DEFAULT 0, '+rtn[i].subj_name+'_acount INT(11) NOT NULL DEFAULT 0, '
+    }
+    Subj.createClass(dbName,majors,function (err2,rtn2) {
+      if(err2) next (err2);
+      var con = [dept,req.body.class];
+      var list = [];
+      var all = [];
+      Student.find(con,function (err3,stu) {
+        if(err3) next (err3);
+        for(var i in stu){
+          list.push([stu[i].sid,stu[i].name]);
+        }
+        for(var k= 1; k<9; k++){
+          for(var j in stu){
+            all.push([stu[j].sid,stu[j].name,k])
+          }
+        }
+        console.log('??????',all);
+        Subj.insertDB(all,dbName.toLowerCase(),function (err4,upt) {
+          if(err4) next (err4);
+          req.flash('warn', 'Insert Success');
+          res.send(majors);
+        });
+      });
+
+    });
+
+  });
+
 });
 
 router.get('/viewtimetable/:id', function(req,res,next){
@@ -37,7 +100,7 @@ router.get('/viewtimetable/:id', function(req,res,next){
 });
 
 router.get('/timetablelist',function(req,res,next){
-  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,req.body.date];
+  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.time,req.body.date];
   Timetable.find({params}, function(err,timetable){
     if (err) next (err);
     console.log(timetable);
@@ -61,7 +124,7 @@ router.get('/timetablemodify/:id', function(req,res,next){
 });
 
 router.post('/timetablemodify', function(req,res,next){
-  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.stime,req.body.etime,req.body.date,req.body.req.body.id];
+  var params = [req.body.dept,req.body.tname,req.body.subj,req.body.class,req.body.time,req.body.date,req.body.req.body.id];
   Timetable.findById(req.body.id,function(err,timetable){
     if (err) throw err;
     if(timetable.length == 0) next (new Error('Timetable data not found!'));
@@ -90,24 +153,7 @@ router.post ('/addsubj', function(req,res,next){
   Subj.add(params, function(err,subj){
     if (err) next (err);
     console.log('========>',subj);
-    Subj.create(req.body.code, function (err2,dbName) {
-      console.log('calling');
-      if(err2) next (err2);
-      var con = [req.body.dept,req.body.class];
-      var list = [];
-      Student.find(con,function (err3,stu) {
-        if(err3) next (err3);
-        for(var i in stu){
-          list.push([stu[i].sid,stu[i].name]);
-        }
-        Subj.insert(list,req.body.code,function (err4,upt) {
-          if(err4) next (err4);
-          console.log('///a//a//a',upt);
-          req.flash('warn', 'Insert Success');
           res.redirect ('/schedule/subjview/'+subj.insertId);
-        });
-      });
-    });
   });
 });
 

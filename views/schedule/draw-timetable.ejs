@@ -99,18 +99,19 @@
                           </select>
                         </div>
                       </div>
-
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="start">Start Time<span class="required">*</span>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="time">Time <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="start" type="time" name="stime" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <label for="password" class="control-label col-md-3">End Time<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="end" type="time" name="etime" data-validate-length="5,20" class="form-control col-md-7 col-xs-12" required="required">
+                          <select class="optional form-control col-md-7 col-xs-12" name="time">
+                            <option value="">Time</option>
+                            <option value="1">8:30AM-9:30AM</option>
+                            <option value="2">9:35AM-10:35AM</option>
+                            <option value="3">10:40AM-11:40AM</option>
+                            <option value="4">12:40PM-1:40PM</option>
+                            <option value="5">1:45PM-2:45PM</option>
+                            <option value="6">2:50PM-3:50PM</option>
+                          </select>
                         </div>
                       </div>
                       <div class="item form-group">
