@@ -61,7 +61,7 @@ router.post('/creatDB',function (req,res,next) {
     for(var i in rtn){
       majors += rtn[i].subj_name+'_count INT(11) NOT NULL DEFAULT 0, '+rtn[i].subj_name+'_acount INT(11) NOT NULL DEFAULT 0, '
     }
-    Subj.createClass(dbName,majors,function (err2,rtn2) {
+    Subj.createClass(dbName.toLowerCase(),majors,function (err2,rtn2) {
       if(err2) next (err2);
       var con = [dept,req.body.class];
       var list = [];
