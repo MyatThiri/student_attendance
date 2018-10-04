@@ -6,7 +6,7 @@ var pool = mysql.createPool({
   user            : 'user_SAMS',
   password        : 'myatthiri',
   database        : 'db_SAMS'
-  host            : 'db4free.net',
+  // host            : 'db4free.net',
   // user            : 'myatthiri',
   // password        : 'myatthiri',
   // database        : 'ptntu_attendance'
