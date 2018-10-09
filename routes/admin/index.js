@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Teacher = require('../../models/Teacher');
 var Student = require('../../models/Student');
+var User = require('../../models/User');
 
 var users = require('./users');
 
@@ -135,9 +136,18 @@ router.post('/remove', function(req,res,next){
   });
 });
 
+// Get View Timetable
+router.get('/major', function(req,res,next){
+    res.render('admin/major');
+});
 
-router.get('/viewattendance', function(req,res,next){
-    res.render('admin/view-attendance')
+// Post View Timetable
+router.post('/totalattendance',function(req,res,next){
+  User.findRollCall(req.body.month,function (err,rtn) {
+    if(err) next (err);
+    res.render('admin/totlattendance',{title: 'Student View', list: rtn});
+  });
+
 });
 
 router.use('/users', users);

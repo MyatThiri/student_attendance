@@ -14,6 +14,10 @@ var User = {
   compare:function(cleartext,encrypted){
     return bcrypt.compareSync(cleartext,encrypted);
   },
+  findRollCall: function(month,callback){
+    var sql = 'select stu_name,stu_id,(COD_count+CC_count+ES_count+ACNII_count+DSP_count+DIP_count+WEB_count+English_count) as overall,month,(COD_acount+CC_acount+ES_acount+ACNII_acount+DSP_acount+DIP_acount+WEB_acount+English_acount) as total from 5beit where month= ?';
+    return db.query(sql,[month],callback);
+  },
 };
 
 module.exports = User;

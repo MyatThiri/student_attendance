@@ -20,6 +20,13 @@
     #head {
      color: black;
      background-color:#ffdb4d;
+     height: 50px;
+     font-size: 18px;
+    }
+    tr {
+      color: black;
+      height: 35px;
+      font-size: 14px;
     }
   </style>
 
@@ -59,7 +66,8 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h1>Subject List</h1>
+                <h2> Monthly Total Attendance By Percetage </h2>
+                <!-- <h1> Class: VBE-IT </h1> -->
               </div>
 
             </div>
@@ -73,35 +81,48 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr id="head">
-                          <th>No</th>
-                          <th>Subject Name</th>
-                          <th>Code</th>
-                          <th>Class</th>
-                          <th>Department</th>
-                          <th>Updated Date</th>
+                          <th>Roll No.</th>
+                          <th>Name</th>
+                          <th>Overall Roll Call</th>
+                          <th>Total Roll Call</th>
+                          <th>Roll Call by %</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <% for (var i=0; i< subj.length; i++){ %>
+                        <% for(let i= 0; i< list.length; i++){
+                         var overall=list[i].overall;
+                         var total=list[i].total;
+                         var per=((total*100)/overall).toFixed(2);
+                        %>
                           <tr>
-                            <td><%= i+1 %></td>
-                            <td><a href="/schedule/subjview/<%=subj[i].subj_id%>"><%=subj[i].subj_name%></a></td>
-                            <td><%=subj[i].code%></td>
-                            <td><%=subj[i].class%></td>
-                            <td><%=subj[i].dept_name%></td>
-                            <td><%=subj[i].updated%></td>
+                            <% if(list[i].stu_id == 1) {%><td>VBE-IT-1</td>
+                            <% }else if(list[i].stu_id == 2){ %><td>VBE-IT-2</td>
+                            <%} else if(list[i].stu_id == 3) {%><td>VBE-IT-3</td>
+                            <%} else if(list[i].stu_id == 4) {%><td>VBE-IT-4</td>
+                            <%} else if(list[i].stu_id == 5) {%><td>VBE-IT-5</td>
+                            <%} else if(list[i].stu_id == 6) {%><td>VBE-IT-6</td>
+                            <%} else if(list[i].stu_id == 7) {%><td>VBE-IT-7</td>
+                            <%} else if(list[i].stu_id == 8) {%><td>VBE-IT-8</td>
+                            <%} else if(list[i].stu_id == 9) {%><td>VBE-IT-9</td>
+                            <%} else if(list[i].stu_id == 10) {%><td>VBE-IT-10</td>
+                            <%} else if(list[i].stu_id == 11) {%><td>VBE-IT-11</td>
+                            <%} else if(list[i].stu_id == 12) {%><td>VBE-IT-12</td>
+                            <% }else{ %><td>VBE-IT-13</td><%} %>
+                            <td><%=list[i].stu_name; %></td>
+                            <td><%=list[i].overall; %></td>
+                            <td><%=list[i].total; %></td>
+                            <td><%=per; %> %</td>
                           </tr>
-                        <% } %>
+                          <%
+                              }
+                          %>
                       </tbody>
                     </table>
                   </div>
-                    <a href="/schedule/addsubj"><button type="button" class="btn btn-success btn-xs">Add Subject</button></a>
                 </div>
               </div>
 
             </div>
-          </div>
-        </div>
         <!-- /page content -->
 
         <!-- footer content -->
@@ -112,7 +133,6 @@
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
-
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
